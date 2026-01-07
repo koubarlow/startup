@@ -1,5 +1,8 @@
 # CS 260 Notes
 
+## Git
+Learned how to make a repo based off a template and push it
+
 [My startup - Simon](https://simon.cs260.click)
 
 ## Helpful links
