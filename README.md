@@ -1,20 +1,10 @@
-# Wins
+# Tomodachi
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-> [!NOTE]
->  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
->  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
+Tomodachi is a journal-sharing app that connects a users from Japan with an users from the United States, and vice-versa. Users create deep relationships while allowing them to learn and practice Japanese, while gaining a deeper understanding of Japanese culture and life. Tomodachi also allows the same experience for users from Japan by helping them improve their English skills and learn what life outside of Japan is like.
 
 ## 🚀 Specification Deliverable
-
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
@@ -26,11 +16,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Have you ever wanted to learn Japanese but don't know where to start? Or you want to improve your Japanese but are too busy? Or the conversations you've had on other language learning apps are shallow and go quiet quickly? Tomodachi solves those problems. Learn conversational Japanese by making friends from Japan through our journal-sharing feature. Our app will send you reminders so that you can spend 10 minutes or less if you're busy, or more time if you're free, to write journal entries and read journals from your friends. 
 
 ### Design
 
-![Design image](placeholder.png)
+![Journal design image](journal.png)
+![Explore design image](explore.png)
+![Chat design image](chat.png)
+![Profile design image](profile.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -43,18 +36,31 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Total number of users from each country displayed
+- Secure username / password / phone number with verification login over HTTPS
+- Journal tab - make an entry
+- Journal prompts - "what is life like in (your country)", "what are your goals and dreams?"
+- Explore tab: see others' journal entries and their profile
+- Chat tab: be able to chat 1 on 1 with the other user
+- Profile tab: see the user's journal entries, follow, be able to heart or comment, see their connected Instagram or Facebook
+- Sign out
+- Delete Account
+- Reporting: report suspicious users, ban their phone number
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
+- **HTML** - Use correct HTML structure for home page, login page, sign up page, journal page, explore page, chat page, profile page, and settings page.
+- **CSS** - Application styling is sleek, works well on different screen sizes, and follows a consistent style and color pallett
+- **React** - Provides authentication pages, journaling, explore, chat, and profile pages as well. Displays live data such as journals, messages, and comments.
+- **Service** - Backend service with endpoints for:
+    - login
+    - signup
+    - create, read, update, and delete journal entries
+    - create and read messages
+    - create, read, update, and delete journal prompts
+    - create, read, update, and delete blacklisted users
 - **DB/Login** - Description here
 - **WebSocket** - Description here
 
