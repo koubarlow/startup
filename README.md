@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-Tomodachi is a journal-sharing app that connects a users from Japan with an users from the United States, and vice-versa. Users create deep relationships while allowing them to learn and practice Japanese, while gaining a deeper understanding of Japanese culture and life. Tomodachi also allows the same experience for users from Japan by helping them improve their English skills and learn what life outside of Japan is like.
+Tomodachi is a journal-sharing app that connects native Japanese speakers with native English speakers, and vice-versa. Users create deep relationships while allowing them to learn and practice Japanese, while gaining a deeper understanding of Japanese culture and life. Tomodachi also allows the same experience for users from Japan by helping them improve their English skills and learn what life outside of Japan is like.
 
 ## 🚀 Specification Deliverable
 
@@ -53,7 +53,7 @@ Profile page:
 I am going to use the required technologies in the following ways.
 
 - **HTML** - Use correct HTML structure for home page, login page, sign up page, journal page, explore page, chat page, profile page, and settings page.
-- **CSS** - Application styling is sleek, works well on different screen sizes, and follows a consistent style and color pallett
+- **CSS** - Application styling is sleek, works well on different screen sizes, and follows a consistent style and color palette
 - **React** - Provides authentication pages, journaling, explore, chat, and profile pages as well. Displays live data such as journals, messages, and comments.
 - **Service** - Backend service with endpoints for:
     - login
