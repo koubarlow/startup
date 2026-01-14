@@ -20,12 +20,20 @@ Have you ever wanted to learn Japanese but don't know where to start? Or you wan
 
 ### Design
 
+Home page:
+![Home design image](home.png)
+Sign In page:
+![Sign In design image](signin.png)
+Sign Up page:
+![Sign Up design image](signup.png)
+Journal page:
 ![Journal design image](journal.png)
+Explore page:
 ![Explore design image](explore.png)
+Chat page:
 ![Chat design image](chat.png)
+Profile page:
 ![Profile design image](profile.png)
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ```mermaid
 sequenceDiagram
@@ -61,8 +69,8 @@ I am going to use the required technologies in the following ways.
     - create and read messages
     - create, read, update, and delete journal prompts
     - create, read, update, and delete blacklisted users
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **DB/Login** - Store registered users, user login sessions, chats, journal entries (along with likes and comments), store blacklisted users, and also journal prompts
+- **WebSocket** - Update user chats when a message is sent within a chat
 
 ## 🚀 AWS deliverable
 
