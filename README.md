@@ -35,13 +35,6 @@ Chat page:
 Profile page:
 ![Profile design image](profile.png)
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
-
 ### Key features
 
 - Total number of users from each country displayed
