@@ -13,8 +13,13 @@ Learned how to make a repo based off a template and push it
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 98.82.39.160
+Note that your elastic IP address is allocated until you release it, not until you terminate your instance. So make sure you release it when you no longer need it. Otherwise you will get a nasty $3 bill every month.
+
+### SSH in
+```
+ssh -i Desktop/projects/cs260/production.pem ubuntu@yaytomodachi.click
+```
 
 ## Caddy
 
