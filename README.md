@@ -30,8 +30,6 @@ Journal page:
 ![Journal design image](journal.png)
 Explore page:
 ![Explore design image](explore.png)
-Chat page:
-![Chat design image](chat.png)
 Profile page:
 ![Profile design image](profile.png)
 
@@ -40,30 +38,26 @@ Profile page:
 - Total number of users from each country displayed
 - Secure username / password / phone number with verification login over HTTPS
 - Journal tab - make an entry
-- Journal prompts - "what is life like in (your country)", "what are your goals and dreams?"
-- Explore tab: see others' journal entries and their profile
-- Chat tab: be able to chat 1 on 1 with the other user
-- Profile tab: see the user's journal entries, follow, be able to heart or comment, see their connected Instagram or Facebook
+- Journal topics - "what is life like in (your country)", "what are your goals and dreams?"
+- Explore tab: see others' journal entries, add your own
+- Profile tab: see the user's journal entries and reads
 - Sign out
 - Delete Account
-- Reporting: report suspicious users, ban their phone number
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Use correct HTML structure for home page, login page, sign up page, journal page, explore page, chat page, profile page, and settings page.
+- **HTML** - Use correct HTML structure for home page, login page, sign up page, journal page, explore page, and profile page.
 - **CSS** - Application styling is sleek, works well on different screen sizes, and follows a consistent style and color palette
-- **React** - Provides authentication pages, journaling, explore, chat, and profile pages as well. Displays live data such as journals, messages, and comments.
+- **React** - Provides authentication pages, journaling, explore, and profile pages as well. Displays live data such as journal entires, current reads, and topics
 - **Service** - Backend service with endpoints for:
     - login
     - signup
     - create, read, update, and delete journal entries
-    - create and read messages
-    - create, read, update, and delete journal prompts
-    - create, read, update, and delete blacklisted users
-- **DB/Login** - Store registered users, user login sessions, chats, journal entries (along with likes and comments), store blacklisted users, and also journal prompts
-- **WebSocket** - Update user chats when a message is sent within a chat
+    - create, read, update, and delete journal topics
+- **DB/Login** - Store registered users, user login sessions, chats, journal entries (along with likes and comments), and also topics
+- **WebSocket** - Notification when someone reads a journal from the user (if user has clicked on it and stayed on it for 10 seconds or longer)
 
 ## 🚀 AWS deliverable
 
@@ -75,15 +69,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Home / Welcome page (index.html), Login page (login.html), Sign Up page (signup.html), Explore page (explore.html), and My Journal page (myjournal.html)
+- [x] **Proper HTML element usage** - Includes proper header, main, and footer structure, with tables, lists, and img tags.
+- [x] **Links** - Links made between pages and to Github repository
+- [x] **Text** - Mock content created and filled
+- [x] **3rd party API placeholder** - Translation button avaiable for journal entries in different languages than the current user
+- [x] **Images** - Tomodachi Journal logo and country logos added
+- [x] **Login placeholder** - Login with username and password available
+- [x] **DB data placeholder** - Journal entries and user information that will be stored is shown in mock data among the pages.
+- [x] **WebSocket placeholder** - On the my journal / profile page, notifications of those who read the journal available
 
 ## 🚀 CSS deliverable
 
