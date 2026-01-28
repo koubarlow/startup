@@ -21,17 +21,17 @@ Have you ever wanted to learn Japanese but don't know where to start? Or you wan
 ### Design
 
 Home page:
-![Home design image](home.png)
+![Home design image](mockups/home.png)
 Sign In page:
-![Sign In design image](signin.png)
+![Sign In design image](mockups/signin.png)
 Sign Up page:
-![Sign Up design image](signup.png)
+![Sign Up design image](mockups/signup.png)
 Journal page:
-![Journal design image](journal.png)
+![Journal design image](mockups/journal.png)
 Explore page:
-![Explore design image](explore.png)
+![Explore design image](mockups/explore.png)
 Profile page:
-![Profile design image](profile.png)
+![Profile design image](mockups/profile.png)
 
 ### Key features
 
