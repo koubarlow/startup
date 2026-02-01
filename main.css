@@ -34,6 +34,7 @@ menu li a:hover {
 
 menu li a.active {
     background-color: #5DA9A2;
+    color: white;
 }
 
 main {
@@ -44,6 +45,9 @@ main {
 
 main h1 {
     font-size: 64px;
+    background-image: linear-gradient(to right, rgb(174, 51, 236), rgb(244, 138, 24));
+    color: transparent;
+    background-clip: text;
 }
 
 .numberOfUsersDisplay {
@@ -64,5 +68,5 @@ main h1 {
 .numberOfUsersDisplay div h2 {
     font-size: 36px;
     font-weight: 900;
-    color: blue;
+    color: rgb(74, 140, 255);
 }
