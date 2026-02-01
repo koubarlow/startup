@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+body {
+    background-color: #FDFAF8;
+    font-family: "LINE Seed JP", sans-serif;
+}
+
+menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+    border: 1px solid #e7e7e7;
+    display: flex;
+    align-items: center;
+}
+
+menu img {
+    height: 70px;
+    width: auto;
+}
+
+menu li a {
+    display: block;
+    color: #333333;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+menu li a:hover {
+    background-color: #19484C;
+    color: white;
+}
+
+menu li a.active {
+    background-color: #5DA9A2;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main h1 {
+    font-size: 64px;
+}
+
+.numberOfUsersDisplay {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+}
+
+.numberOfUsersDisplay div {
+    padding: 12px;
+    text-align: center;
+}
+
+.numberOfUsersDisplay div img {
+    width: 100%;
+}
+
+.numberOfUsersDisplay div h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: blue;
+}
