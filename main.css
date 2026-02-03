@@ -4,6 +4,9 @@ body {
     background-color: #FDFAF8;
     font-family: "LINE Seed JP", sans-serif;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 menu {
@@ -24,7 +27,7 @@ menu img {
 menu li a {
     display: block;
     color: #333333;
-    padding: 14px 16px;
+    padding: 28px 16px;
     text-decoration: none;
 }
 
@@ -39,6 +42,7 @@ menu li a.active {
 }
 
 main {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,4 +74,19 @@ main h1 {
     font-size: 36px;
     font-weight: 900;
     color: rgb(74, 140, 255);
+}
+
+footer {
+    min-height: 50px;
+    background-color: #f3f3f3;
+    border: 1px solid #e7e7e7;
+    display: block;
+    align-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+footer a {
+    float: right;
+    text-decoration: none;
 }
