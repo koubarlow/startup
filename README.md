@@ -83,12 +83,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Kept header, footer, and main content body structure.
+- [x] **Navigation elements** - Added navigation.
+- [x] **Responsive to window resizing** - Updated to look appealing on different screen sizes.
+- [x] **Application elements** - Added a variety of elements while keeping good structure.
+- [x] **Application text content** - Added text in form of cards and content in journal entries.
+- [x] **Application images** - Added American and Japanese flag images.
 
 ## 🚀 React part 1: Routing deliverable
 
