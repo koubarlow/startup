@@ -52,7 +52,16 @@ main h1 {
     background-image: linear-gradient(to right, rgb(174, 51, 236), rgb(244, 138, 24));
     color: transparent;
     background-clip: text;
+    text-align: center;
+    margin: 32px;
 }
+main .welcomeDisplay {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 button {
     background-color: #19d4c2;
     border: none;   
@@ -148,6 +157,89 @@ button {
     color: blue;
 }
 
+/* myjournal.html */
+.notifications {
+    width: 100%;
+}
+.notifications .alert {
+    display: flex;
+    padding: 12px 16px;
+    color: white;
+    background-color: #3faeee;
+    align-items: center;
+}
+.notifications .alert p {
+    width: 100%;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+.newJournalBtn {
+    margin-bottom: 16px;
+}
+.journalList {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    gap: 16px;
+}
+.journalList .card {
+    text-align: justify;
+    position: relative;
+}
+.journalList .card p {
+    color: darkslategray;
+}
+.journalList .card .reads {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    color: gray;
+}
+.seeMoreBtn {
+    margin-bottom: 16px;
+    background-color: #19484C;
+}
+
+/* Login.html */
+.loginCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 400px;
+    justify-content: center;
+    margin: auto;
+}
+.loginCard input[type=text], .loginCard input[type=password], .loginCard input[type=submit], .loginCard input[type=number], .loginCard a, .loginCard select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.loginCard button {
+    justify-content: center;
+    width: 100%;
+}
+.loginCard a {
+    text-decoration: none;
+    color: #19484C;
+}
+
+/* ALL PAGES - FOOTER */
 footer {
     min-height: 50px;
     background-color: #f3f3f3;
@@ -161,5 +253,5 @@ footer {
 footer a {
     float: right;
     text-decoration: none;
-    color: blue;
+    color: #19484C;
 }
