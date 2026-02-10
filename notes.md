@@ -21,6 +21,11 @@ Note that your elastic IP address is allocated until you release it, not until y
 ssh -i Desktop/projects/cs260/production.pem ubuntu@yaytomodachi.click
 ```
 
+### Update to prod
+```
+./deployFiles.sh -k ../production.pem -h yaytomodachi.click -s startup
+```
+
 ## Caddy
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
