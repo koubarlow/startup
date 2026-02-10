@@ -26,6 +26,11 @@ ssh -i Desktop/projects/cs260/production.pem ubuntu@yaytomodachi.click
 ./deployFiles.sh -k ../production.pem -h yaytomodachi.click -s startup
 ```
 
+### v2 After installing tailwind
+```
+./deployFiles.sh -k ../production.pem -h yaytomodachi.click -s dist
+```
+
 ## Caddy
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
