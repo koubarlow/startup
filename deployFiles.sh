@@ -1,6 +1,3 @@
-#!/bin/bash
-
-# Parse
 while getopts k:h:s: flag
 do
     case "${flag}" in
@@ -10,34 +7,30 @@ do
     esac
 done
 
-# Validate
 if [[ -z "$key" || -z "$hostname" || -z "$service" ]]; then
     printf "\nMissing required parameter.\n"
-    printf "  syntax: deployFiles.sh -k <pem key file> -h <hostname> -s <service>\n\n"
+    printf "  syntax: deployReact.sh -k <pem key file> -h <hostname> -s <service>\n\n"
     exit 1
 fi
 
-printf "\n----> Deploying service '$service' to $hostname using key $key\n"
+printf "\n----> Deploying React bundle $service to $hostname with $key\n"
 
-# -----------------------------
-# Build project
-# -----------------------------
-BUILD_FOLDER="dist"
+printf "\n----> Build the distribution package\n"
+rm -rf build
+mkdir build
+npm install # make sure vite is installed so that we can bundle
+npm run build # build the React front end
+cp -rf dist/* build # move the React front end to the target distribution
 
-if [ ! -d "$BUILD_FOLDER" ]; then
-    printf "\n----> Build folder '$BUILD_FOLDER' not found. Running 'npm run build'...\n"
-    npm run build
-fi
-
-# Step 1
-printf "\n----> Clearing previous distribution on the target.\n"
+printf "\n----> Clearing out previous distribution on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
 rm -rf services/${service}/public
 mkdir -p services/${service}/public
 ENDSSH
 
-# Step 2
-printf "\n----> Copying build files to the server.\n"
-scp -r -i "$key" ${BUILD_FOLDER}/* ubuntu@$hostname:services/$service/public
+printf "\n----> Copy the distribution package to the target\n"
+scp -r -i "$key" build/* ubuntu@$hostname:services/$service/public
 
-printf "\n Deployment complete!\n"
+printf "\n----> Removing local copy of the distribution package\n"
+rm -rf build
+rm -rf dist
