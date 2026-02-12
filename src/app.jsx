@@ -3,31 +3,41 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
-import { Play } from './explore/explore';
-import { Scores } from './journal/journal';
-import { About } from './home/home';
+import { Explore } from './explore/explore';
+import { Journal } from './journal/journal';
+import { Home } from './home/home';
 
 export default function App() {
   return (
     <BrowserRouter>
         <div className="body bg-dark text-light">
-            <header>
-                <nav>
-                    <menu>
-                    <img src="assets/tomodachi-logo-small.png" alt="Tomodachi Logo"/>
-                    <li><NavLink to="home" class="active">Tomodachi</NavLink></li>
-                    <li><NavLink to="explore">Explore</NavLink></li>
-                    <li><NavLink to="journal">My Journal</NavLink></li>
-                    <li><NavLink to="login">Login</NavLink></li>
+            <header className="container-fluid">
+                <nav className="navbar fixed-top navbar-dark">
+                    <menu className="navbar-nav">
+                        <img src="assets/tomodachi-logo-small.png" alt="Tomodachi Logo"/>
+                        <li className="navbar-item">
+                            <NavLink className="nav-link" to="" class="active nav-item">Tomodachi</NavLink>
+                        </li>
+                        <li className="navbar-item">
+                            <NavLink className="nav-link" to="explore">Explore</NavLink>
+                        </li>
+                        <li className="navbar-item">
+                            <NavLink className="nav-link" to="journal">My Journal</NavLink>
+                        </li>
+                        <li className="navbar-item">
+                            <NavLink className="nav-link" to="login">Login</NavLink>
+                        </li>
                     </menu>
                 </nav>
             </header>
 
             <Routes>
                 <Route path='/' element={<Home />} exact />
+                <Route path='/home' element={<Home />} />
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/journal' element={<Journal />} />
-                <Route path='/Login' element={<Login />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 
@@ -38,4 +48,8 @@ export default function App() {
         </div>
     </BrowserRouter>
   );
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
