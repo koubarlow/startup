@@ -266,7 +266,7 @@ export function SignUp() {
             <input type="number" placeholder="age"/>
           </div>
           <button type="submit">Sign Up</button>
-          <a href="login.html">Login</a>
+          <a href="/login">Login</a>
         </form>
       </div>
     </main>

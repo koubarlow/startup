@@ -1,6 +1,10 @@
 import React from 'react';
+import { SignUp } from '../signup/signup';
+import { useNavigate } from "react-router-dom";
+
 
 export function Login() {
+  const navigate = useNavigate();
   return (
     <main>
       <div class="loginCard">
@@ -9,7 +13,7 @@ export function Login() {
           <input name="email" type="text" placeholder="your@email.com" />
           <input name="password" type="password" placeholder="password" />
           <button type="submit">Login</button>
-          <a href="signup.html">Sign Up</a>
+          <a href="/signup">Sign Up</a>
         </form>
       </div>
     </main>

@@ -17,7 +17,7 @@ export default function App() {
                     <menu>
                         <img src="assets/tomodachi-logo-small.png" alt="Tomodachi Logo"/>
                         <li className="navbar-item">
-                            <NavLink className="nav-link active" to="" class="active nav-item">Tomodachi</NavLink>
+                            <NavLink className="nav-link active" to="">Tomodachi</NavLink>
                         </li>
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="explore">Explore</NavLink>
