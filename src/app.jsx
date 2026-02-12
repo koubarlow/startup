@@ -6,6 +6,7 @@ import { Login } from './login/login';
 import { Explore } from './explore/explore';
 import { Journal } from './journal/journal';
 import { Home } from './home/home';
+import { SignUp } from './signup/signup';
 
 export default function App() {
   return (
