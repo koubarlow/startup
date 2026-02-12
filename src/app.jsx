@@ -11,13 +11,13 @@ import { SignUp } from './signup/signup';
 export default function App() {
   return (
     <BrowserRouter>
-        <div className="body bg-dark text-light">
-            <header className="container-fluid">
-                <nav className="navbar fixed-top navbar-dark">
-                    <menu className="navbar-nav">
+        <div className="body">
+            <header>
+                <nav>
+                    <menu>
                         <img src="assets/tomodachi-logo-small.png" alt="Tomodachi Logo"/>
                         <li className="navbar-item">
-                            <NavLink className="nav-link" to="" class="active nav-item">Tomodachi</NavLink>
+                            <NavLink className="nav-link active" to="" class="active nav-item">Tomodachi</NavLink>
                         </li>
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="explore">Explore</NavLink>

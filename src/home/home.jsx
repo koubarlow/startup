@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Home() {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main>
       <div class="welcomeDisplay">
         <h1>Tomodachi</h1>
         <h3>Discover what other countries are really like through Journal Sharing</h3>

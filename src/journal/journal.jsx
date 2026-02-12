@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Journal() {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main>
       <div class="notifications">
         <div class="alert">
           <p>10:39am GMT+9: くりさん read your Jan. 26 journal</p>

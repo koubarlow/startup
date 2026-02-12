@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Explore() {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main>
       <div>
         <button>Create Journal Entry</button>
       </div>

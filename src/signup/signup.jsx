@@ -2,7 +2,7 @@ import React from 'react';
 
 export function SignUp() {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main>
       <div class="loginCard">
         <h2>Sign Up</h2>
         <form method="get" action="explore.html">
