@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Journal() {
+export function SignUp() {
   return (
     <main className="container-fluid bg-secondary text-center">
-      <div>journal displayed here</div>
+      <div>sign up displayed here</div>
     </main>
   );
 }
