@@ -94,9 +94,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - Vite installed, also for dev, hotloading works
+- [x] **Components** - Incorporated explore, home, journal, login, and signup components into main app
+- [x] **Router** - App can now use routing and navigation properly with React, for example - signing up, logging in, using the nav bar, and other buttons work properly.
 
 ## 🚀 React part 2: Reactivity deliverable
 
