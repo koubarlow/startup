@@ -4,22 +4,47 @@ export function Journal() {
   return (
     <main>
       <div class="notifications">
-        <div class="alert">
-          <p>10:39am GMT+9: くりさん read your Jan. 26 journal</p>
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <div id="alert-1" class="flex sm:items-center p-4 mb-1 text-sm text-fg-brand-strong rounded-base bg-brand-soft color-brand-100" role="alert">
+          <svg class="w-4 h-4 shrink-0 mt-0.5 md:mt-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <span class="sr-only">Info</span>
+          <div class="ms-2 text-sm">
+            10:39am GMT+9: くりさん read your Jan. 26 journal
+          </div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-brand-medium hover:bg-brand-200 inline-flex items-center justify-center h-8 w-8 shrink-0 shrink-0" data-dismiss-target="#alert-1" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+          </button>
         </div>
-        <div class="alert">
-          <p>10:36am GMT+9: ポーさん read your Jan. 26 journal</p>
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <div id="alert-1" class="flex sm:items-center p-4 mb-1 text-sm text-fg-brand-strong rounded-base bg-brand-soft color-brand-soft" role="alert">
+          <svg class="w-4 h-4 shrink-0 mt-0.5 md:mt-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <span class="sr-only">Info</span>
+          <div class="ms-2 text-sm">
+            10:36am GMT+9: ポーさん read your Jan. 26 journal
+          </div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-brand-medium hover:bg-brand-200 inline-flex items-center justify-center h-8 w-8 shrink-0 shrink-0" data-dismiss-target="#alert-1" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+          </button>
         </div>
-        <div class="alert">
-         <p>10:34am GMT+9: 田中さん read your Jan. 25 journal</p>
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <div id="alert-1" class="flex sm:items-center p-4 mb-1 text-sm text-fg-brand-strong rounded-base bg-brand-soft color-brand-soft" role="alert">
+          <svg class="w-4 h-4 shrink-0 mt-0.5 md:mt-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <span class="sr-only">Info</span>
+          <div class="ms-2 text-sm">
+            10:34am GMT+9: 田中さん read your Jan. 25 journal
+          </div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-brand-medium hover:bg-brand-200 inline-flex items-center justify-center h-8 w-8 shrink-0 shrink-0" data-dismiss-target="#alert-1" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+          </button>
         </div>
       </div>
-      <div class="newJournalBtn">
-        <button>Create Journal Entry</button>
-      </div>
+      <button type="button" class="my-4 inline-flex items-center text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-base px-6 py-3.5 focus:outline-none">
+      <svg class="w-6 h-6 me-1.5 -ms-0.5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path fill-rule="evenodd" d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z" clip-rule="evenodd"/>
+      </svg>
+        Enter in Journal
+      </button>
+      
       <div class="journalList">
         <div class="card">
           <h3>Jan. 27, 2026</h3>
@@ -46,7 +71,9 @@ export function Journal() {
           <p class="reads">24.3k reads</p>
         </div>
       </div>
-      <button class="seeMoreBtn">See more</button>
+      <button type="button" class="my-4 inline-flex items-center text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium rounded-base text-base px-6 py-3.5 focus:outline-none">
+          See More
+      </button>
     </main>
   );
 }

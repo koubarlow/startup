@@ -1,18 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Noto+Sans+JP:wght@100..900&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --color-neutral-primary-soft: #f5f5f5;
-  --color-heading: #111827;
-  --color-body: #374151;
+@import "tailwindcss";
 
+@theme {
+  --color-brand-50: #f0faf9;
+  --color-brand-100: #d9f2ef;
+  --color-brand-200: #b3e5df;
+  --color-brand-300: #8dd8cf;
+  --color-brand-400: #73c3b8;
+  --color-brand-500: #5da9a0;
+  --color-brand-600: #4a8780;
+  --color-brand-700: #3a6860;
+  --color-brand-800: #2a4a45;
+  --color-brand-900: #1a2f2b;
+  
+  --color-brand: var(--color-brand-500);
+  --color-brand-strong: var(--color-brand-600);
+  --color-brand-medium: var(--color-brand-400);
+  --color-brand-soft: var(--color-brand-100);
+  
+  --color-neutral-primary: #ffffff;
+  --color-neutral-primary-soft: #f9fafb;
+  --color-neutral-secondary: #f3f4f6;
+  --color-heading: #111827;
+  --color-text: #374151;
+  --color-text-muted: #6b7280;
+  
   --radius-base: 0.5rem;
-  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+@utility rounded-base {
+  border-radius: var(--radius-base);
+}
+
+@utility rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+@utility rounded-xl {
+  border-radius: var(--radius-xl);
+}
+
+@utility shadow-xs {
+  box-shadow: var(--shadow-xs);
 }
 
 .body {
     background-color: #FDFAF8;
-    font-family: "LINE Seed JP", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -67,7 +109,7 @@ main .welcomeDisplay {
     text-align: center;
 }
 
-button {
+.login-button {
     background-color: #19d4c2;
     border: none;   
     color: white;
@@ -202,6 +244,10 @@ button {
 .journalList .card {
     text-align: justify;
     position: relative;
+    transition: transform 200ms;
+}
+.journalList .card:hover {
+    transform: scale(1.05);
 }
 .journalList .card p {
     color: darkslategray;
@@ -234,6 +280,12 @@ button {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  line-height: 1.4; /* Changed from normal */
+  font-size: 16px;
+  min-height: 48px;
+}
+.loginCard select {
+  min-height: 48px;
 }
 .loginCard button {
     justify-content: center;

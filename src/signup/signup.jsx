@@ -5,7 +5,7 @@ export function SignUp() {
     <main>
       <div class="loginCard">
         <h2>Sign Up</h2>
-        <form method="get" action="explore.html">
+        <form method="get" action="explore">
           <div>
             <input type="text" placeholder="your@email.com" />
           </div>
@@ -265,7 +265,7 @@ export function SignUp() {
           <div>
             <input type="number" placeholder="age"/>
           </div>
-          <button type="submit">Sign Up</button>
+          <button class="login-button" type="submit">Sign Up</button>
           <a href="/login">Login</a>
         </form>
       </div>
