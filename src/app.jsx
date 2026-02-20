@@ -7,8 +7,13 @@ import { Explore } from './explore/explore';
 import { Journal } from './journal/journal';
 import { Home } from './home/home';
 import { SignUp } from './signup/signup';
+import { AuthState } from './login/authState';
 
-export default function App() {
+function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
     <BrowserRouter>
         <div className="body">
@@ -19,12 +24,16 @@ export default function App() {
                         <li className="navbar-item">
                             <NavLink className="nav-link active" to="">Tomodachi</NavLink>
                         </li>
+                        {authState === AuthState.Authenticated && (
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="explore">Explore</NavLink>
                         </li>
+                        )}
+                        {authState === AuthState.Authenticated && (
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="journal">My Journal</NavLink>
                         </li>
+                        )}
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="login">Login</NavLink>
                         </li>
@@ -33,17 +42,25 @@ export default function App() {
             </header>
 
             <Routes>
-                <Route path='/' element={<Home />} exact />
-                <Route path='/home' element={<Home />} />
+                <Route path='/' element={
+                    <Home 
+                    userName={userName}
+                    authState={authState}
+                    onAuthChange={(userName, authState) => {
+                    setAuthState(authState);
+                    setUserName(userName);
+                    }}
+                    />
+                    } exact />
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/journal' element={<Journal />} />
-                <Route path='/login' element={<Login />} />
+                <Route path='/login' element={<Login/>} />
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 
             <footer>
-                <span class="text-black">Kou Barlow</span>
+                <span className="text-black">Kou Barlow</span>
                 <a href="https://github.com/koubarlow/startup">GitHub</a>
             </footer>
         </div>
@@ -54,3 +71,5 @@ export default function App() {
 function NotFound() {
   return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
+
+export default App;
