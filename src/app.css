@@ -123,6 +123,10 @@ main .welcomeDisplay {
     float: right;
 }
 
+.login-button:disabled {
+    background-color: gray;
+}
+
 .numberOfUsersDisplay {
     display: flex;
     justify-content: center;

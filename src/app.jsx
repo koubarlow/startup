@@ -10,14 +10,20 @@ import { SignUp } from './signup/signup';
 import { AuthState } from './login/authState';
 
 function App() {
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
-  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
+  const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
 
   function logout() {
-    localStorage.removeItem('userName');
+    localStorage.removeItem('username');
     setAuthState(AuthState.Unauthenticated);
-    setUserName(userName);
+    setUsername(username);
+  }
+
+  function getUserData(email) {
+    var userJson = localStorage.getItem(email);
+    var user = JSON.parse(userJson);
+    setUsername(user.username)
   }
 
   return (
@@ -57,7 +63,7 @@ function App() {
             <Routes>
                 <Route path='/' element={
                     <Home 
-                    userName={userName}
+                    username={username}
                     authState={authState}
                     />
                     } exact />
@@ -65,17 +71,17 @@ function App() {
                 <Route path='/journal' element={<Journal />} />
                 <Route path='/login' element={
                     <Login
-                    onAuthChange={(userName, authState) => {
+                    onAuthChange={(email, authState) => {
                         setAuthState(authState);
-                        setUserName(userName);
+                        getUserData(email);
                     }}
                     />
                     } />
                 <Route path='/signup' element={
                     <SignUp 
-                    onAuthChange={(userName, authState) => {
+                    onAuthChange={(email, authState) => {
                         setAuthState(authState);
-                        setUserName(userName);
+                        getUserData(email);
                     }}
                     />} 
                     />

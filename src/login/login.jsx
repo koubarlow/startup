@@ -1,5 +1,4 @@
 import React from 'react';
-import { SignUp } from '../signup/signup';
 import { useNavigate } from "react-router-dom";
 import { AuthState } from './authState';
 import { MessageDialog } from './messageDialog';

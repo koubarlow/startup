@@ -1,24 +1,59 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { MessageDialog } from '../login/messageDialog';
+import { AuthState } from '../login/authState';
 
 export function SignUp({ onAuthChange }) {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const [country, setCountry] = React.useState('United States');
+  const [primaryLanguage, setPrimaryLanguage] = React.useState('');
+  const [age, setAge] = React.useState('');
+  const [displayError, setDisplayError] = React.useState(null);
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+    }
+  
+  async function signUpUser() {
+    if (!validateEmail(email)) {
+      setDisplayError("Invalid email format");
+      return;
+    }
+    var newUser = { 'email': email, 'username': username, 'password': password, 'country': country, 'primaryLanguage': primaryLanguage, 'age': age }
+    localStorage.setItem(email, JSON.stringify(newUser));
+    onAuthChange(email, AuthState.Authenticated);
+    navigate('/explore');
+  }
+
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
   return (
     <main>
-      <div class="loginCard">
+      <div className="loginCard">
         <h2>Sign Up</h2>
-        <form method="get" action="explore">
+        <form onSubmit={handleSubmit}>
           <div>
-            <input type="text" placeholder="your@email.com" />
+            <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
           </div>
           <div>
-            <input type="text" placeholder="username" />
+            <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="username" />
           </div>
           <div>
-            <input type="password" placeholder="password" />
+            <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
           </div>
           <div>
-            <input type="password" placeholder="confirm password" />
+            <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="confirm password" />
           </div>
-          <select>
+          <select onChange={(e) => setCountry(e.target.value)}>
               <option value="United States">United States</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>
@@ -260,15 +295,16 @@ export function SignUp({ onAuthChange }) {
               <option value="Zimbabwe">Zimbabwe</option>
           </select>
           <div>
-            <input type="text" placeholder="primary language"/>
+            <input type="text" onChange={(e) => setPrimaryLanguage(e.target.value)} placeholder="primary language"/>
           </div>
           <div>
-            <input type="number" placeholder="age"/>
+            <input type="number" onChange={(e) => setAge(e.target.value)} placeholder="age"/>
           </div>
-          <button class="login-button" type="submit">Sign Up</button>
+          <button className="login-button" type="submit" onClick={() => signUpUser()} disabled={!email || !username || !password || !confirmPassword || !country || !primaryLanguage || !age}>Sign Up</button>
           <a href="/login">Login</a>
         </form>
       </div>
+      <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
     </main>
   );
 }
