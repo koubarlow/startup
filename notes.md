@@ -48,25 +48,25 @@ Bootstrap seems a bit like magic. It styles things nicely, but is very opinionat
 I did like the navbar it made it super easy to build a responsive header.
 
 ```html
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">
-            <img src="logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" />
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container-fluid">
+          <a className="navbar-brand">
+            <img src="logo.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
             Calmer
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="play.html">Play</a>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a className="nav-link active" href="play.html">Play</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+              <li className="nav-item">
+                <a className="nav-link" href="about.html">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Logout</a>
+              <li className="nav-item">
+                <a className="nav-link" href="index.html">Logout</a>
               </li>
             </ul>
           </div>
