@@ -14,6 +14,12 @@ function App() {
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
 
+  function logout() {
+    localStorage.removeItem('userName');
+    setAuthState(AuthState.Unauthenticated);
+    setUserName(userName);
+  }
+
   return (
     <BrowserRouter>
         <div className="body">
@@ -34,9 +40,16 @@ function App() {
                             <NavLink className="nav-link" to="journal">My Journal</NavLink>
                         </li>
                         )}
+                        {authState === AuthState.Unauthenticated && (
                         <li className="navbar-item">
                             <NavLink className="nav-link" to="login">Login</NavLink>
                         </li>
+                        )}
+                        {authState === AuthState.Authenticated && (
+                        <li className="navbar-item">
+                            <button onClick={() => logout()} >Logout</button>
+                        </li>
+                        )}
                     </menu>
                 </nav>
             </header>
@@ -46,16 +59,26 @@ function App() {
                     <Home 
                     userName={userName}
                     authState={authState}
-                    onAuthChange={(userName, authState) => {
-                    setAuthState(authState);
-                    setUserName(userName);
-                    }}
                     />
                     } exact />
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/journal' element={<Journal />} />
-                <Route path='/login' element={<Login/>} />
-                <Route path='/signup' element={<SignUp />} />
+                <Route path='/login' element={
+                    <Login
+                    onAuthChange={(userName, authState) => {
+                        setAuthState(authState);
+                        setUserName(userName);
+                    }}
+                    />
+                    } />
+                <Route path='/signup' element={
+                    <SignUp 
+                    onAuthChange={(userName, authState) => {
+                        setAuthState(authState);
+                        setUserName(userName);
+                    }}
+                    />} 
+                    />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 

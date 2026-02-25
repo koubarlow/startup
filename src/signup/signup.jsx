@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function SignUp() {
+export function SignUp({ onAuthChange }) {
   return (
     <main>
       <div class="loginCard">

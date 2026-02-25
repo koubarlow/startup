@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthState } from '../login/authState';
 
-export function Home({ username, authState, onAuthChange}) {
+export function Home({ username, authState }) {
   const navigate = useNavigate();
 
   return (
