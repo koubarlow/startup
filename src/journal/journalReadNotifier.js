@@ -21,7 +21,7 @@ class JournalReadNotifier {
   }
 
   broadcastEvent(userId, timestamp, journalId) {
-    const event = new EventMessage(userId, timestamp, journalId);
+    const event = new JournalEvent(userId, timestamp, journalId);
     this.receiveEvent(event);
   }
 
