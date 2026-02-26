@@ -1,6 +1,48 @@
 import React from 'react';
+import { JournalNotifier } from './journalReadNotifier';
 
 export function Journal() {
+
+  const [events, setEvent] = React.useState([]);
+
+  // React.useEffect(() => {
+  //   JournalNotifier.addHandler(handleGameEvent);
+
+  //   return () => {
+  //     JournalNotifier.removeHandler(handleGameEvent);
+  //   };
+  // }, []);
+
+  function handleJournalEvent(event) {
+    setEvent((prevEvents) => {
+      let newEvents = [event, ...prevEvents];
+      if (newEvents.length > 10) {
+        newEvents = newEvents.slice(1, 10);
+      }
+      return newEvents;
+    });
+  }
+
+  function createJournalEventArray() {
+    const messageArray = [];
+    for (const [i, event] of events.entries()) {
+      let user = localStorage.getItem(event.userId);
+      let username = user.username;
+      let timestamp = event.timestamp;
+      let journal = localStorage.getItem(event.journalId)
+      let journalName = journal.name;
+      let message = timestamp + " " + username + " read your " + journalName;
+
+      messageArray.push(
+        <div key={i} className='event'>
+          <span className={'journal-event'}>{event.from.split('@')[0]}</span>
+          {message}
+        </div>
+      );
+    }
+    return messageArray;
+  }
+
   return (
     <main>
       <div className="notifications">
