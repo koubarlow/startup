@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import userData from './users.json';
 
-export function JournalDetailModal({showJournalDetail, setShowJournalDetail}) {
+export function JournalDetailModal({journal, setShowJournalDetail}) {
+
+    const journalTopic = journal.topic;
+    const journalEntryText = journal.entry;
+    const journalUser = userData.users.find(user => user.userId === journal.userId);
+    const journalUsername = journalUser.username;
 
     const englishText = `
         I live in an apartment. Every day, I go about my life surrounded by a quiet and calm atmosphere. There is very little noise in the mornings or at night, so it’s an environment where I can truly value my own time. Since it’s located a little away from the main road, I’m hardly ever bothered by the sounds of cars or people talking. When I open the window, I can sometimes hear birds chirping in the distance, and starting my day while listening to that sound makes me feel very peaceful.
@@ -29,7 +35,7 @@ export function JournalDetailModal({showJournalDetail, setShowJournalDetail}) {
                 {/* <!-- Modal header --> */}
                 <div className="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                     <h3 className="text-lg font-medium text-heading">
-                        Housing - 🇯🇵 晃くん
+                        {journalTopic} - {journalUsername}
                     </h3>
                     <button type="button" className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="top-left-modal">
                         <svg className="w-5 h-5" onClick={toggle} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
@@ -38,7 +44,7 @@ export function JournalDetailModal({showJournalDetail, setShowJournalDetail}) {
                 </div>
                 {/* <!-- Modal body --> */}
                 <div className="space-y-4 md:space-y-6 py-4 md:py-6">
-                  <p className="leading-relaxed text-body">{isTranslated ? englishText : japaneseText}</p>
+                  <p className="leading-relaxed text-body">{isTranslated ? englishText : journalEntryText}</p>
                 </div>
                 {/* <!-- Modal footer --> */}
                 <div className="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
