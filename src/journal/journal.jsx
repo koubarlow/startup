@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { JournalNotifier } from './journalReadNotifier';
 import { MyJournalEntry } from './myJournalEntry';
 import { MyNotification } from './myNotification';
@@ -57,11 +57,24 @@ export function Journal() {
     return notificationArray;
   }
 
+  function createJournalEntry(topic, entry) {
+    const newEntry = {
+      "journalId": 13,
+      "userId": 1,
+      "topic": topic,
+      "entry": entry,
+      "timestamp": Math.floor(Date.now() / 1000),
+      "reads": "0"
+    }
+    myJournals.push(newEntry);
+  }
+
   return (
     <main>
       {showCreateJournalEntryModal && (
         <CreateJournalEntryModal 
             setShowCreateJournalEntryModal={setShowCreateJournalEntryModal}
+            createEntry={createJournalEntry}
           />
         )}
 
