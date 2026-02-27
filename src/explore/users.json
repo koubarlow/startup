@@ -1,0 +1,52 @@
+{
+    "users": [
+        {
+            "userId": 1,
+            "email": "kou@yaytomodachi.click",
+            "username": "Kou",
+            "password": "koupass",
+            "country": "United States",
+            "language": "English",
+            "age": 21,
+            "journalIds": [1,5,12],
+            "createdDate": "1772157073092",
+            "lastLogin": "1772157073092"
+        },
+        {
+            "userId": 2,
+            "email": "pyo@yaytomodachi.click",
+            "username": "Pyo",
+            "password": "pyopass",
+            "country": "Myanmar",
+            "language": "Burmese",
+            "age": 21,
+            "journalIds": [2,6,11],
+            "createdDate": "1772157073092",
+            "lastLogin": "1772157073092"
+        },
+        {
+            "userId": 3,
+            "email": "akira@yaytomodachi.click",
+            "username": "晃",
+            "password": "akirapass",
+            "country": "Japan",
+            "language": "Japanese",
+            "age": 21,
+            "journalIds": [3,7,10],
+            "createdDate": "1772157073092",
+            "lastLogin": "1772157073092"
+        },
+        {
+            "userId": 4,
+            "email": "yanny@yaytomodachi.click",
+            "username": "Yanny",
+            "password": "yannypass",
+            "country": "Canada",
+            "language": "English",
+            "age": 21,
+            "journalIds": [4,8,9],
+            "createdDate": "1772157073092",
+            "lastLogin": "1772157073092"
+        }
+    ]
+}

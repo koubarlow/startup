@@ -1,0 +1,100 @@
+{
+    "journals": [
+        {
+            "journalId": 1,
+            "userId": 1,
+            "topic": "Housing",
+            "entry": "Today I’ve been thinking about housing in a more personal way. When I think about my home, I realize it’s more than just a building where I sleep — it’s the place where I feel safe, where I can relax, and where I can truly be myself. Having a stable place to live gives me comfort and a sense of belonging. I can’t imagine how stressful it must be for people who don’t have that stability. Seeing stories about rising housing costs in cities like New York City makes me more aware of how fortunate I am to have a secure place to call home. At the same time, thinking about housing makes me reflect on how deeply it affects every part of life. When someone has a safe and comfortable home, it becomes easier to focus on school, work, and personal goals. Without that foundation, everything feels uncertain. I sometimes take my living situation for granted, but writing this reminds me not to. Housing isn’t just about shelter — it’s about stability, dignity, and the opportunity to build a future.",
+            "timestamp": "1772157073092",
+            "reads": "20402"
+        },
+        {
+            "journalId": 2,
+            "userId": 2,
+            "topic": "Work Stress",
+            "entry": "Lately, I’ve been thinking a lot about work stress and how it affects me personally. There are days when the pressure to meet deadlines and complete tasks feels overwhelming. Even after I finish work, my mind doesn’t always switch off — I find myself replaying conversations, worrying about mistakes, or thinking about what I need to do the next day. It can be exhausting trying to balance responsibilities while also wanting time for myself and the people I care about. At the same time, I’ve realized that work stress has taught me important lessons about setting boundaries and managing my time better. I’m learning that it’s okay to take breaks and that I don’t have to be perfect at everything. When I pause, breathe, and organize my priorities, I feel more in control. Writing this reminds me that stress is a normal part of working life, but it doesn’t have to define my entire experience. I want to focus more on balance and protecting my mental well-being.",
+            "timestamp": "1772157073092",
+            "reads": "29581"
+        },
+        {
+            "journalId": 3,
+            "userId": 3,
+            "topic": "Cost of Living",
+            "entry": "最近、生活費についてよく考えるようになった。食料品や電気代、家賃など、ほとんどのものが少しずつ値上がりしていて、前よりもお金の使い方に気をつけるようになったと感じる。スーパーで買い物をするたびに、「前はもっと安かったのに」と思うことが増えた。将来のために貯金もしたいけれど、毎月の支出を考えると余裕があまりないと感じることもある。 それでも、この状況を通してお金の管理について学ぶ機会になっているとも思う。必要なものとそうでないものをしっかり区別し、計画的に使うことの大切さを実感している。生活費の高さは不安を感じさせることもあるけれど、自分の価値観や優先順位を見直すきっかけにもなっている。これからは、無理をしすぎず、バランスを大切にしながら生活していきたい。",
+            "timestamp": "1772157073092",
+            "reads": "1002"
+        },
+        {
+            "journalId": 4,
+            "userId": 4,
+            "topic": "Daily Life",
+            "entry": "Today I found myself reflecting on my daily life and the small routines that shape my days. Most of my time is spent moving from one task to another — waking up, getting ready, working, eating, and trying to rest before starting all over again. Sometimes it feels repetitive, but there’s also comfort in the structure. The familiar rhythm of everyday life gives me a sense of stability, even when other things feel uncertain. I’ve started to notice that it’s the small moments that truly matter — a quiet morning before everything gets busy, a good conversation, or even just a few minutes to breathe and reset. Daily life may not always be exciting, but it is where growth happens little by little. Writing this reminds me to be more present and appreciate the ordinary moments, because they make up most of my life.",
+            "timestamp": "1772157073092",
+            "reads": "28511"
+        },
+        {
+            "journalId": 5,
+            "userId": 1,
+            "topic": "Gaming",
+            "entry": "Today I was thinking about how gaming has become a meaningful part of my life. At first, it was just something I did for fun, a way to pass time and relax after a long day. But over time, it has become more than just entertainment. When I’m playing, I feel focused and fully present, whether I’m exploring a new world, completing challenges, or working with teammates toward a goal. It gives me a sense of achievement and progress, especially when I overcome a difficult level or improve my skills. Gaming also gives me a break from stress and everyday responsibilities. For a while, I can step into a different world and forget about worries. At the same time, I’ve learned the importance of balance. While gaming helps me unwind, I try to make sure it doesn’t take over my time or priorities. Writing this reminds me that gaming, like any hobby, can be positive when enjoyed in a healthy and mindful way.",
+            "timestamp": "1772157073092",
+            "reads": "283401"
+        },
+        {
+            "journalId": 6,
+            "userId": 2,
+            "topic": "Emotional Wellbeing",
+            "entry": "Today I’ve been reflecting on my emotional wellbeing and how much it influences my daily life. There are times when I feel balanced and positive, and everything seems manageable. But there are also days when my emotions feel heavier, and even small challenges seem overwhelming. I’m starting to understand that emotional wellbeing isn’t about being happy all the time — it’s about recognizing how I feel and allowing myself to process those emotions without judgment. I’ve realized that taking care of my emotional health requires intention. Simple things like getting enough rest, talking to someone I trust, or spending quiet time alone can make a big difference. When I ignore my feelings, they tend to build up, but when I acknowledge them, I feel lighter and more in control. Writing this reminds me that emotional wellbeing is something I need to nurture regularly, just like my physical health.",
+            "timestamp": "1772157073092",
+            "reads": "384135"
+        },
+        {
+            "journalId": 7,
+            "userId": 3,
+            "topic": "Weather",
+            "entry": "今日は天気について考えてみた。朝起きたときに窓の外を見ると、その日の気分が少し決まる気がする。晴れていると自然と前向きな気持ちになれるし、雨の日は落ち着いた静かな気分になる。最近は寒い日が続いていて、外に出るのが少し億劫に感じることもある。でも、その冷たい空気のおかげで季節の変化をはっきりと感じることができる。天気は私の日常に大きな影響を与えていると思う。暑すぎると疲れやすくなるし、心まで重たく感じることがある。一方で、心地よい風やきれいな青空を見ると、それだけで少し元気をもらえる。何気ない天気の変化だけれど、自分の感情や行動に深くつながっていると改めて感じた。これからは、どんな天気の日でも、その日の空を楽しむ余裕を持ちたい。",
+            "timestamp": "1772157073092",
+            "reads": "92742"
+        },
+        {
+            "journalId": 8,
+            "userId": 4,
+            "topic": "Pop Music",
+            "entry": "Today I found myself thinking about pop music and the role it plays in my life. Whenever I’m in the car or getting ready in the morning, I usually turn on a pop playlist without even thinking about it. There’s something comforting about catchy melodies and familiar lyrics. Pop songs have a way of matching almost any mood — whether I need motivation, comfort, or just something upbeat to lift my energy. I also realize that pop music connects me to different memories and moments in my life. Certain songs instantly take me back to specific times, people, or feelings. Even though pop music is often seen as simple or mainstream, I think that’s part of its power — it’s relatable and easy to connect with. Writing this reminds me how much music, especially pop, shapes my emotions and adds color to my everyday routine.",
+            "timestamp": "1772157073092",
+            "reads": "9481"
+        },
+        {
+            "journalId": 9,
+            "userId": 4,
+            "topic": "K-Pop Demon Hunters",
+            "entry": "I can’t stop thinking about K-Pop Demon Hunters lately — it’s such a wild and creative concept. The idea of glamorous K-pop idols secretly fighting demons feels over-the-top in the best way possible. I love how it mixes bright stage performances with dark action scenes, almost like two completely different worlds colliding. It makes me imagine what it would be like to live a double life like that — smiling under stage lights while carrying the responsibility of saving the world. What really stands out to me is the personality in the concept. It’s bold, dramatic, stylish, and a little rebellious. I’m drawn to that energy — the confidence, teamwork, and hidden strength behind the glitter and choreography. It reminds me that people can be more than what they seem on the surface. Even though it’s fictional, it inspires me in a strange way: to embrace different sides of myself and not be afraid to stand out.",
+            "timestamp": "1772157073092",
+            "reads": "10582"
+        },
+        {
+            "journalId": 10,
+            "userId": 3,
+            "topic": "University",
+            "entry": "最近、大学生活についてよく考える。正直に言うと、楽しいこともあれば、プレッシャーを感じることも多い。でもそれが大学なんだと思う。授業では新しい知識に出会い、自分の考え方が少しずつ広がっていくのを感じる瞬間がある。一方で、課題や試験に追われて「なんでこんなに大変なんだろう」と思う日もある。それでも、友達と他愛もない話をしたり、キャンパスを歩きながら将来について語り合ったりする時間は、かけがえのないものだと感じている。大学はただ勉強する場所ではなく、自分自身を試す場所でもあると思う。失敗したり、悩んだりしながらも、「自分は何をしたいのか」「どんな人になりたいのか」と真剣に向き合う時間が増えた。まだ答えははっきりしないけれど、それを探している今この瞬間もきっと大切なんだと思う。少し不安で、でもどこかワクワクしている――そんな気持ちが、今の私の大学生活そのものだ。",
+            "timestamp": "1772157073092",
+            "reads": "57192"
+        },
+        {
+            "journalId": 11,
+            "userId": 2,
+            "topic": "Pho Noodles",
+            "entry": "ဒီနေ့တော့ Pho ခေါက်ဆွဲအကြောင်း စဉ်းစားနေမိတယ်။ ပူပူနွေးနွေး ဟင်းရည်နဲ့ အရသာနူးညံ့တဲ့ ခေါက်ဆွဲတွေက စားတဲ့အချိန်တိုင်း စိတ်ကိုသက်သာစေတတ်တယ်။ အထူးသဖြင့် မိုးရွာတဲ့နေ့တွေ၊ ဒါမှမဟုတ် ပင်ပန်းနေတဲ့အချိန်တွေမှာ Pho တစ်ပွဲစားလိုက်ရင် ကိုယ်ခန္ဓာလည်း နွေးထွေးလာသလို စိတ်လည်း သက်သာသွားတယ်လို့ ခံစားရတယ်။ ဟင်းရည်ထဲက အမွှေးအကြိုင်အနံ့နဲ့ နူးညံ့တဲ့ အသားအပိုင်းအစတွေ ပေါင်းစပ်ထားတဲ့အရသာက ရိုးရှင်းပေမယ့် ထူးခြားတယ်လို့ ထင်မိတယ်။ Pho က စားစရာတစ်မျိုးသာမကဘဲ အမှတ်တရတွေနဲ့လည်း ဆက်နွယ်နေတတ်တယ်။ သူငယ်ချင်းတွေနဲ့ အတူထိုင်စားခဲ့တဲ့အချိန်တွေ၊ စကားပြောရင်း အချိန်ကုန်သွားတာတွေကို ပြန်သတိရစေတယ်။ တစ်ခါတစ်ရံ စိတ်ပင်ပန်းနေရင်တောင် Pho တစ်ပွဲက စိတ်ကို ပြန်လည်တက်ကြွစေတတ်တယ်။ ဒီလိုရိုးရှင်းတဲ့ အစားအစာတစ်မျိုးက ကိုယ့်နေ့စဉ်ဘဝထဲမှာ သေးငယ်ပေမယ့် အရေးကြီးတဲ့ ပျော်ရွှင်မှုတစ်ခု ဖြစ်နေတယ်လို့ ခံစားမိတယ်။",
+            "timestamp": "1772157073092",
+            "reads": "48103"
+        },
+        {
+            "journalId": 12,
+            "userId": 1,
+            "topic": "Surfing",
+            "entry": "Today I’ve been thinking about surfing and why it fascinates me so much. There’s something powerful about standing on a board, waiting for the right wave, feeling the ocean move beneath you. Surfing seems both peaceful and intense at the same time. The sound of the waves, the salt in the air, and the endless horizon create a sense of freedom that’s hard to describe. Even imagining it makes me feel lighter and more alive. What I admire most about surfing is the balance it requires — physically and mentally. You can’t control the ocean; you can only learn to move with it. That idea really speaks to me. It feels like a metaphor for life: sometimes you wipe out, sometimes you catch the perfect wave, but either way you keep paddling back out. Thinking about surfing reminds me to stay patient, embrace challenges, and enjoy the ride instead of fearing the fall.",
+            "timestamp": "1772157073092",
+            "reads": "19234"
+        }
+    ]
+}
