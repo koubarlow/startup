@@ -102,8 +102,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Users can now sign up and login, journal entries can be added by users, journals can also be translated (translation is mocked for now) via API, and users can log out.
+- [x] **Hooks** - Added notifications on Journal page, simulating people reading your journals. "Reading" is defined as a person clicks on your journal and stays on it for at least 8 seconds.
 
 ## 🚀 Service deliverable
 
