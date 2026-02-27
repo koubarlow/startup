@@ -1,8 +1,10 @@
 import React from 'react';
 import { JournalNotifier } from './journalReadNotifier';
-import journalData from '../explore/journals.json';
 import { MyJournalEntry } from './myJournalEntry';
 import { MyNotification } from './myNotification';
+import journalData from '../explore/journals.json';
+import userData from '../explore/users.json';
+import { timeConverter } from './timeConverter';
 
 export function Journal() {
 
@@ -19,32 +21,38 @@ export function Journal() {
 
   function handleJournalEvent(notification) {
     setMyNotifications((prevEvents) => {
-      let newEvents = [event, ...prevEvents];
-      if (newEvents.length > 10) {
-        newEvents = newEvents.slice(1, 10);
+      let newEvents = [notification, ...prevEvents];
+      if (newEvents.length > 3) {
+        newEvents = newEvents.slice(1, 3);
       }
       return newEvents;
     });
   }
 
   function createNotifications() {
-    const messageArray = [];
-    for (const [i, notification] of notifications.entries()) {
-      // let user = localStorage.getItem(event.userId);
-      // let username = user.username;
-      // let timestamp = event.timestamp;
-      // let journal = localStorage.getItem(event.journalId)
-      // let journalName = journal.name;
-      // let message = timestamp + " " + username + " read your " + journalName;
+    const notificationArray = [];
 
-      messageArray.push(
+    for (const [i, notification] of notifications.entries()) {
+      let randomUserIndex = Math.floor(Math.random() * userData.users.length);
+      let user = userData.users[randomUserIndex];
+      let username = user.username;
+      let timestamp = Date.now();
+      let randomJournalIndex = Math.floor(Math.random() * myJournals.length);
+      let journal = myJournals.at(randomJournalIndex);
+      let journalTitle = journal.topic;
+      let journalDate = timeConverter(journal.timestamp);
+
+      notificationArray.push(
         <MyNotification 
         key={i}
-        notification={notification}
+        username={username}
+        journalTitle={journalTitle}
+        journalDate={journalDate}
+        timestamp={timestamp}
         />
       );
     }
-    return messageArray;
+    return notificationArray;
   }
 
   return (
