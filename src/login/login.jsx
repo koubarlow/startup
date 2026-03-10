@@ -15,14 +15,39 @@ export function Login({ onAuthChange }) {
     e.preventDefault();
   }
 
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
   async function loginUser() {
-    // let username = localStorage.getItem(email);
-    // if (!username) {
-    //   setDisplayError("Incorrect email or password");
-    //   return;
-    // }
-    onAuthChange(email, AuthState.Authenticated);
-    navigate('/');
+    if (!validateEmail(email)) {
+      setDisplayError("Invalid email format");
+      return;
+    }
+    let loginBody = JSON.stringify({ 'email': email, 'password': password });
+    const response = await fetch('/api/auth/login', {
+      method: 'post',
+      body: loginBody,
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      }
+    });
+
+    if (response?.status === 200) {
+      const data = await response.json();
+      onLogin(data.user);
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
+  }
+
+  function onLogin(user) {
+    localStorage.setItem('username', user.username);
+    onAuthChange(user.username, AuthState.Authenticated);
+    navigate('/explore');
   }
 
   return (

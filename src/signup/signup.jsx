@@ -11,7 +11,7 @@ export function SignUp({ onAuthChange }) {
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const [country, setCountry] = React.useState('United States');
-  const [primaryLanguage, setPrimaryLanguage] = React.useState('');
+  const [language, setLanguage] = React.useState('');
   const [age, setAge] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
 
@@ -40,16 +40,17 @@ export function SignUp({ onAuthChange }) {
     });
 
     if (response?.status === 200) {
-      onSignUp()
+      const data = await response.json();
+      onSignUp(data.user);
     } else {
       const body = await response.json();
       setDisplayError(`⚠ Error: ${body.msg}`);
     }
   }
 
-  function onSignUp() {
-    localStorage.setItem('username', username);
-    onAuthChange(username, AuthState.Authenticated);
+  function onSignUp(user) {
+    localStorage.setItem('username', user.username);
+    onAuthChange(user.username, AuthState.Authenticated);
     navigate('/explore');
   }
 
@@ -312,12 +313,12 @@ export function SignUp({ onAuthChange }) {
               <option value="Zimbabwe">Zimbabwe</option>
           </select>
           <div>
-            <input type="text" onChange={(e) => setPrimaryLanguage(e.target.value)} placeholder="primary language"/>
+            <input type="text" onChange={(e) => setLanguage(e.target.value)} placeholder="primary language"/>
           </div>
           <div>
             <input type="number" onChange={(e) => setAge(e.target.value)} placeholder="age"/>
           </div>
-          <button className="login-button" type="submit" onClick={() => signUpUser()} disabled={!email || !username || !password || !confirmPassword || !country || !primaryLanguage || !age}>Sign Up</button>
+          <button className="login-button" type="submit" onClick={() => signUpUser()} disabled={!email || !username || !password || !confirmPassword || !country || !language || !age}>Sign Up</button>
           <a href="/login">Login</a>
         </form>
       </div>

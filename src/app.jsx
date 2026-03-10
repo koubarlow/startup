@@ -15,15 +15,18 @@ function App() {
   const [authState, setAuthState] = React.useState(currentAuthState);
 
   function logout() {
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    })
+    .catch((error) => {
+        // Logout failed. Assuming offline
+        console.log(error);
+        return;
+    })
+    
     localStorage.removeItem('username');
     setAuthState(AuthState.Unauthenticated);
     setUsername(username);
-  }
-
-  function getUserData(email) {
-    var userJson = localStorage.getItem(email);
-    var user = JSON.parse(userJson);
-    setUsername(user.username)
   }
 
   return (
@@ -53,7 +56,7 @@ function App() {
                         )}
                         {authState === AuthState.Authenticated && (
                         <li className="navbar-item">
-                            <button className="nav-link" onClick={() => logout()} >Logout</button>
+                            <NavLink className="nav-link" to="" onClick={() => logout()} >Logout</NavLink>
                         </li>
                         )}
                     </menu>
@@ -79,9 +82,9 @@ function App() {
                     } />
                 <Route path='/signup' element={
                     <SignUp 
-                    onAuthChange={(email, authState) => {
+                    onAuthChange={(username, authState) => {
                         setAuthState(authState);
-                        getUserData(email);
+                        setUsername(username);
                     }}
                     />} 
                     />
