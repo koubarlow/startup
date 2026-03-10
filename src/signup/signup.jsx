@@ -18,23 +18,40 @@ export function SignUp({ onAuthChange }) {
   const handleSubmit = (e) => {
       e.preventDefault();
     }
-  
-  async function signUpUser() {
-    if (!validateEmail(email)) {
-      setDisplayError("Invalid email format");
-      return;
-    }
-    var newUser = { 'email': email, 'username': username, 'password': password, 'country': country, 'primaryLanguage': primaryLanguage, 'age': age }
-    localStorage.setItem(email, JSON.stringify(newUser));
-    onAuthChange(email, AuthState.Authenticated);
-    navigate('/explore');
-  }
 
   const validateEmail = (email) => {
     return email.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   };
+  
+  async function signUpUser() {
+    if (!validateEmail(email)) {
+      setDisplayError("Invalid email format");
+      return;
+    }
+    let signUpBody = JSON.stringify({ 'email': email, 'username': username, 'password': password, 'country': country, 'language': language, 'age': age });
+    const response = await fetch('/api/auth/signup', {
+      method: 'post',
+      body: signUpBody,
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      }
+    });
+
+    if (response?.status === 200) {
+      onSignUp()
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
+  }
+
+  function onSignUp() {
+    localStorage.setItem('username', username);
+    onAuthChange(username, AuthState.Authenticated);
+    navigate('/explore');
+  }
 
   return (
     <main>

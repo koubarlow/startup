@@ -53,7 +53,7 @@ function App() {
                         )}
                         {authState === AuthState.Authenticated && (
                         <li className="navbar-item">
-                            <button onClick={() => logout()} >Logout</button>
+                            <button className="nav-link" onClick={() => logout()} >Logout</button>
                         </li>
                         )}
                     </menu>
@@ -71,9 +71,9 @@ function App() {
                 <Route path='/journal' element={<Journal />} />
                 <Route path='/login' element={
                     <Login
-                    onAuthChange={(email, authState) => {
+                    onAuthChange={(username, authState) => {
                         setAuthState(authState);
-                        getUserData(email);
+                        setUsername(username);
                     }}
                     />
                     } />
