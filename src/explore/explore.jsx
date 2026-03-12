@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { JournalDetailModal } from './journalDetailModal';
 import { ExploreJournalEntry } from './exploreJournalEntry';
 import journalData from './journals.json';
+import { AuthState } from '../login/authState';
 import { useNavigate } from 'react-router-dom';
 
-export function Explore() {
+export function Explore({ onAuthChange }) {
 
   const [showJournalDetail, setShowJournalDetail] = useState(false);
   const [journals, setJournals] = useState([]);
@@ -23,6 +24,9 @@ export function Explore() {
       const res = await fetch('/api/journals');
       switch (res.status) {
         case 401:
+          localStorage.removeItem('username');
+          localStorage.removeItem('currentUserId');
+          onAuthChange('', '', AuthState.Unauthenticated)
           navigate('/');
           return;
       }

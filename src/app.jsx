@@ -73,28 +73,41 @@ function App() {
                         authState={authState}
                     />
                     } exact />
-                <Route path='/explore' element={<Explore />} />
+                <Route path='/explore' element={
+                    <Explore 
+                        onAuthChange={(username, currentUserId, authState) => {
+                            setAuthState(authState);
+                            setUsername(username);
+                            setCurrentUserId(currentUserId);
+                        }}
+                    />
+                    } />
                 <Route path='/journal' element={
                     <Journal 
                         userId={currentUserId}
+                        onAuthChange={(username, currentUserId, authState) => {
+                            setAuthState(authState);
+                            setUsername(username);
+                            setCurrentUserId(currentUserId);
+                        }}
                     />
                     } />
                 <Route path='/login' element={
                     <Login
-                    onAuthChange={(username, currentUserId, authState) => {
-                        setAuthState(authState);
-                        setUsername(username);
-                        setCurrentUserId(currentUserId);
-                    }}
+                        onAuthChange={(username, currentUserId, authState) => {
+                            setAuthState(authState);
+                            setUsername(username);
+                            setCurrentUserId(currentUserId);
+                        }}
                     />
                     } />
                 <Route path='/signup' element={
                     <SignUp 
-                    onAuthChange={(username, currentUserId, authState) => {
-                        setAuthState(authState);
-                        setUsername(username);
-                        setCurrentUserId(currentUserId)
-                    }}
+                        onAuthChange={(username, currentUserId, authState) => {
+                            setAuthState(authState);
+                            setUsername(username);
+                            setCurrentUserId(currentUserId)
+                        }}
                     />} 
                     />
                 <Route path='*' element={<NotFound />} />

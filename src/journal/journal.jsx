@@ -3,10 +3,10 @@ import { JournalNotifier } from './journalReadNotifier';
 import { MyJournalEntry } from './myJournalEntry';
 import { MyNotification } from './myNotification';
 import { CreateJournalEntryModal } from './createJournalEntryModal';
-import { timeConverter } from './timeConverter';
 import { useNavigate } from 'react-router-dom';
+import { AuthState } from '../login/authState';
 
-export function Journal({ userId }) {
+export function Journal({ userId, onAuthChange }) {
   const userData = [];
   const [showCreateJournalEntryModal, setShowCreateJournalEntryModal] = React.useState(false);
   const [notifications, setMyNotifications] = React.useState([]);
@@ -43,7 +43,7 @@ export function Journal({ userId }) {
       let randomJournalIndex = Math.floor(Math.random() * myJournals.length);
       let journal = myJournals.at(randomJournalIndex);
       let journalTitle = journal.topic;
-      let journalDate = timeConverter(journal.timestamp);
+      let journalDate = journal.timestamp;
 
       notificationArray.push(
         <MyNotification 
@@ -72,6 +72,9 @@ export function Journal({ userId }) {
       const res = await fetch(`/api/journals?userId=${userId}`);
       switch (res.status) {
         case 401:
+          localStorage.removeItem('username');
+          localStorage.removeItem('currentUserId');
+          onAuthChange('', '', AuthState.Unauthenticated)
           navigate('/');
           return;
       }
@@ -79,7 +82,6 @@ export function Journal({ userId }) {
         throw new Error('Failed to fetch journals');
       }
       const journals = await res.json();
-      console.log(journals);
       setMyJournals(journals);
     } catch (e) {
       console.error(e);

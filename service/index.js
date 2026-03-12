@@ -93,7 +93,7 @@ apiRouter.get('/journals', verifyAuth, async (req, res) => {
   const user = await findUser('userId', userId);
   const journalIds = user.journals;
   const userJournals = []
-  for (journalId in journalIds) {
+  for (const journalId of journalIds) {
     const journal = await findJournal('journalId', journalId);
     userJournals.push(journal);
   }
