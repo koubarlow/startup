@@ -74,11 +74,13 @@ apiRouter.get('/journals', verifyAuth, (_req, res) => {
 });
 
 // Create Journal
-apiRouter.post('/journal', verifyAuth, (req, res) => {
-  journals.push(req.body);
-  // later, verify the req.body is the correct model
-  res.send(journals);
+apiRouter.post('/journal', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  const journal = createJournal(user.userId, req.body.topic, req.body.entry)
+  res.send(journal);
 });
+
+// TODO: Update Journal as read
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -125,6 +127,20 @@ async function createUser(email, username, password, country, language, age) {
   users.push(user);
 
   return user;
+}
+
+async function createJournal(userId, topic, entry) {
+  const journal = {
+    journalId: uuid.v4(),
+    userId: userId,
+    topic: topic,
+    entry: entry,
+    timestamp: new Date(),
+    reads: 0,
+  };
+  journals.push(journal);
+
+  return journal;
 }
 
 app.listen(port, () => {
