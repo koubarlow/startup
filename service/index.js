@@ -7,6 +7,7 @@ const app = express();
 const authCookieName = 'token';
 
 let users = [];
+let journals = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -55,6 +56,28 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
+});
+
+// Middleware
+const verifyAuth = async(req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+};
+
+// Get Journals
+apiRouter.get('/journals', verifyAuth, (_req, res) => {
+  res.send(journals);
+});
+
+// Create Journal
+apiRouter.post('/journal', verifyAuth, (req, res) => {
+  journals.push(req.body);
+  // later, verify the req.body is the correct model
+  res.send(journals);
 });
 
 // Default error handler

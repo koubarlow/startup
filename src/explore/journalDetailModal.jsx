@@ -27,6 +27,24 @@ export function JournalDetailModal({journal, setShowJournalDetail}) {
         setShowJournalDetail(prev => !prev);
     }
 
+    async function translate() {
+        const res = await fetch("https://libretranslate.com/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q: journalEntryText,
+                source: "auto",
+                target: "en",
+                format: "text",
+                alternatives: 3,
+                api_key: ""
+            }),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        console.log(await res.json());
+        toggle();
+    }
+
     return(
     <div id="journalModal" tabIndex="-1" className="fixed inset-0 z-50 flex justify-center items-center bg-black/50 p-4">
         <div className="relative w-full max-w-2xl max-h-full">
@@ -48,7 +66,7 @@ export function JournalDetailModal({journal, setShowJournalDetail}) {
                 </div>
                 {/* <!-- Modal footer --> */}
                 <div className="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
-                    <button data-modal-hide="top-left-modal" onClick={() => setIsTranslated(prev => !prev)} type="button" className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Translate</button>
+                    <button data-modal-hide="top-left-modal" onClick={translate} type="button" className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Translate</button>
                     <button data-modal-hide="top-left-modal" onClick={toggle} type="button" className="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Close</button>
                 </div>
             </div>
