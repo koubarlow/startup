@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import userData from './users.json';
 
-export function JournalDetailModal({journal, setShowJournalDetail}) {
+export function JournalDetailModal({user, journal, setShowJournalDetail}) {
 
     const journalTopic = journal.topic;
     const journalEntryText = journal.entry;
-    const journalUser = userData.users.find(user => user.userId === journal.userId);
-    const journalUsername = journalUser.username;
+    const journalUsername = user.username;
 
     const englishText = `
         I live in an apartment. Every day, I go about my life surrounded by a quiet and calm atmosphere. There is very little noise in the mornings or at night, so it’s an environment where I can truly value my own time. Since it’s located a little away from the main road, I’m hardly ever bothered by the sounds of cars or people talking. When I open the window, I can sometimes hear birds chirping in the distance, and starting my day while listening to that sound makes me feel very peaceful.

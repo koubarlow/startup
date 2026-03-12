@@ -18,6 +18,9 @@ app.use(express.static('public'));
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
+
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -64,9 +67,21 @@ const verifyAuth = async(req, res, next) => {
   if (user) {
     next();
   } else {
+    res.clearCookie(authCookieName);
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
+
+// Get Specific User
+apiRouter.get('/users/:userId', verifyAuth, async (req, res) => {
+  const userId = req.params.userId
+  const user = await findUser('userId', userId);
+  if (user) {
+    res.send(user);
+  } else {
+    res.status(404).send({ msg: 'User not found' })
+  }
+})
 
 // Get Journals
 apiRouter.get('/journals', verifyAuth, (_req, res) => {
@@ -76,8 +91,8 @@ apiRouter.get('/journals', verifyAuth, (_req, res) => {
 // Create Journal
 apiRouter.post('/journal', verifyAuth, async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  const journal = createJournal(user.userId, req.body.topic, req.body.entry)
-  res.send(journal);
+  const journals = createJournal(user.userId, req.body.topic, req.body.entry)
+  res.send(journals);
 });
 
 // TODO: Update Journal as read
@@ -140,7 +155,7 @@ async function createJournal(userId, topic, entry) {
   };
   journals.push(journal);
 
-  return journal;
+  return journals;
 }
 
 app.listen(port, () => {

@@ -2,22 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { JournalDetailModal } from './journalDetailModal';
 import { ExploreJournalEntry } from './exploreJournalEntry';
 import journalData from './journals.json';
+import { useNavigate } from 'react-router-dom';
 
 export function Explore() {
 
   const [showJournalDetail, setShowJournalDetail] = useState(false);
-  const [journals, setJournals] = useState(journalData?.journals || []);
+  const [journals, setJournals] = useState([]);
   const [selectedJournal, setSelectedJournal] = useState(null);
+  const [selectedJournalUser, setSelectedJournalUser] = useState(null);
+  const navigate = useNavigate();
 
-  function entryClicked(journalEntry) {
-    setShowJournalDetail(prev => !prev)
-    setSelectedJournal(journalEntry)
+  function entryClicked(journalEntry, user) {
+    setSelectedJournal(journalEntry);
+    setSelectedJournalUser(user);
+    setShowJournalDetail(prev => !prev);
   }
+
+  async function fetchJournals() {
+    try {
+      const res = await fetch('/api/journals');
+      switch (res.status) {
+        case 401:
+          navigate('/home');
+          return;
+      }
+      if (!res.ok) {
+        throw new Error('Failed to fetch journals');
+      }
+      const journals = await res.json();
+      console.log(journals);
+      setJournals(journals);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  React.useEffect(() => {
+    fetchJournals();
+  }, []);
   
   return (
     <main>
       {showJournalDetail && (
         <JournalDetailModal
+          user={selectedJournalUser}
           journal={selectedJournal}
           setShowJournalDetail={setShowJournalDetail}
           />

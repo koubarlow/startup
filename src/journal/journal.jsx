@@ -57,16 +57,13 @@ export function Journal() {
     return notificationArray;
   }
 
-  function createJournalEntry(topic, entry) {
-    const newEntry = {
-      "journalId": 13,
-      "userId": 1,
-      "topic": topic,
-      "entry": entry,
-      "timestamp": Math.floor(Date.now() / 1000),
-      "reads": "0"
-    }
-    myJournals.push(newEntry);
+  async function createJournalEntry(topic, entry) {
+    const newEntry = { topic: topic, entry: entry }
+    await fetch('/api/journal', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newEntry),
+    });
   }
 
   return (

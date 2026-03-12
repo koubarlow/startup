@@ -30,13 +30,13 @@ export function SignUp({ onAuthChange }) {
       setDisplayError("Invalid email format");
       return;
     }
-    let signUpBody = JSON.stringify({ 'email': email, 'username': username, 'password': password, 'country': country, 'language': language, 'age': age });
+    let newUser = { email: email, username: username, password: password, country: country, language: language, age: age }
     const response = await fetch('/api/auth/signup', {
-      method: 'post',
-      body: signUpBody,
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-      }
+      },
+      body: JSON.stringify(newUser),
     });
 
     if (response?.status === 200) {
