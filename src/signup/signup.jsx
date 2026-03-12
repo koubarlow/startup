@@ -50,7 +50,8 @@ export function SignUp({ onAuthChange }) {
 
   function onSignUp(user) {
     localStorage.setItem('username', user.username);
-    onAuthChange(user.username, AuthState.Authenticated);
+    localStorage.setItem('currentUserId', user.userId);
+    onAuthChange(user.username, user.userId, AuthState.Authenticated);
     navigate('/explore');
   }
 

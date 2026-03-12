@@ -4,21 +4,22 @@ import { MyJournalEntry } from './myJournalEntry';
 import { MyNotification } from './myNotification';
 import { CreateJournalEntryModal } from './createJournalEntryModal';
 import { timeConverter } from './timeConverter';
-import journalData from '../explore/journals.json';
-import userData from '../explore/users.json';
+import { useNavigate } from 'react-router-dom';
 
-export function Journal() {
-
+export function Journal({ userId }) {
+  const userData = [];
   const [showCreateJournalEntryModal, setShowCreateJournalEntryModal] = React.useState(false);
   const [notifications, setMyNotifications] = React.useState([]);
-  const [myJournals, setMyJournals] = React.useState(journalData.journals.filter(entry => entry.userId === 1) || []);
+  const [myJournals, setMyJournals] = React.useState([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
-    JournalNotifier.addHandler(handleJournalEvent);
+    //JournalNotifier.addHandler(handleJournalEvent);
+    fetchUserJournals();
 
-    return () => {
-      JournalNotifier.removeHandler(handleJournalEvent);
-    };
+    // return () => {
+    //   JournalNotifier.removeHandler(handleJournalEvent);
+    // };
   }, []);
 
   function handleJournalEvent(notification) {
@@ -64,6 +65,25 @@ export function Journal() {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newEntry),
     });
+  }
+
+  async function fetchUserJournals() {
+    try {
+      const res = await fetch(`/api/journals?userId=${userId}`);
+      switch (res.status) {
+        case 401:
+          navigate('/');
+          return;
+      }
+      if (!res.ok) {
+        throw new Error('Failed to fetch journals');
+      }
+      const journals = await res.json();
+      console.log(journals);
+      setMyJournals(journals);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (

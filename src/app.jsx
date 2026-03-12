@@ -10,6 +10,7 @@ import { SignUp } from './signup/signup';
 import { AuthState } from './login/authState';
 
 function App() {
+  const [currentUserId, setCurrentUserId] = React.useState(localStorage.getItem('currentUserId') || '');
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
   const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
@@ -25,8 +26,10 @@ function App() {
     })
     
     localStorage.removeItem('username');
+    localStorage.removeItem('currentUserId');
     setAuthState(AuthState.Unauthenticated);
     setUsername(username);
+    setCurrentUserId(currentUserId);
   }
 
   return (
@@ -66,25 +69,31 @@ function App() {
             <Routes>
                 <Route path='/' element={
                     <Home 
-                    username={username}
-                    authState={authState}
+                        username={username}
+                        authState={authState}
                     />
                     } exact />
                 <Route path='/explore' element={<Explore />} />
-                <Route path='/journal' element={<Journal />} />
+                <Route path='/journal' element={
+                    <Journal 
+                        userId={currentUserId}
+                    />
+                    } />
                 <Route path='/login' element={
                     <Login
-                    onAuthChange={(username, authState) => {
+                    onAuthChange={(username, currentUserId, authState) => {
                         setAuthState(authState);
                         setUsername(username);
+                        setCurrentUserId(currentUserId);
                     }}
                     />
                     } />
                 <Route path='/signup' element={
                     <SignUp 
-                    onAuthChange={(username, authState) => {
+                    onAuthChange={(username, currentUserId, authState) => {
                         setAuthState(authState);
                         setUsername(username);
+                        setCurrentUserId(currentUserId)
                     }}
                     />} 
                     />

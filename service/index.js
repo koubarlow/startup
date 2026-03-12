@@ -84,8 +84,20 @@ apiRouter.get('/users/:userId', verifyAuth, async (req, res) => {
 })
 
 // Get Journals
-apiRouter.get('/journals', verifyAuth, (_req, res) => {
-  res.send(journals);
+apiRouter.get('/journals', verifyAuth, async (req, res) => {
+  const { userId } = req.query;
+  if (!userId) {
+    res.send(journals);
+    return;
+  }
+  const user = await findUser('userId', userId);
+  const journalIds = user.journals;
+  const userJournals = []
+  for (journalId in journalIds) {
+    const journal = await findJournal('journalId', journalId);
+    userJournals.push(journal);
+  }
+  res.send(userJournals);
 });
 
 // Create Journal
@@ -95,23 +107,16 @@ apiRouter.post('/journal', verifyAuth, async (req, res) => {
   res.send(journals);
 });
 
-// TODO: Update Journal as read
 
-// Default error handler
-app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
+// Update Journal as read
+apiRouter.put('/journal/:journalId', verifyAuth, async(_req, res) => {
+  const journal = await findJournal('journalId', journalId);
+  if (!journal) {
+    return res.status(404).send({ msg: 'Journal not found' });
+  }
+  journal.reads += 1;
+  res.send(journal);
 });
-
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
-async function findUser(field, value) {
-  if (!value) return null;
-
-  return users.find((u) => u[field] === value);
-}
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
@@ -136,8 +141,8 @@ async function createUser(email, username, password, country, language, age) {
     language: language,
     age: age,
     journals: [],
-    createdDate: new Date(),
-    lastLogin: new Date()
+    createdDate: new Date().toLocaleDateString(),
+    lastLogin: new Date().toLocaleDateString()
   };
   users.push(user);
 
@@ -145,18 +150,45 @@ async function createUser(email, username, password, country, language, age) {
 }
 
 async function createJournal(userId, topic, entry) {
+  const journalId = uuid.v4()
   const journal = {
-    journalId: uuid.v4(),
+    journalId: journalId,
     userId: userId,
     topic: topic,
     entry: entry,
-    timestamp: new Date(),
+    timestamp: new Date().toLocaleDateString(),
     reads: 0,
   };
   journals.push(journal);
+  const user = await findUser('userId', userId)
+  user.journals.push(journalId);
 
   return journals;
 }
+
+// Find a user by field such as id, etc.
+async function findUser(field, value) {
+  if (!value) return null;
+
+  return users.find((u) => u[field] === value);
+}
+
+// Find a journal by field such as id, etc.
+async function findJournal(field, value) {
+  if (!value) return null;
+
+  return journals.find((u) => u[field] === value);
+}
+
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

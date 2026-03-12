@@ -23,7 +23,7 @@ export function Explore() {
       const res = await fetch('/api/journals');
       switch (res.status) {
         case 401:
-          navigate('/home');
+          navigate('/');
           return;
       }
       if (!res.ok) {
