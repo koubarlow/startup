@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
@@ -116,6 +118,28 @@ apiRouter.put('/journal/:journalId', verifyAuth, async(_req, res) => {
   }
   journal.reads += 1;
   res.send(journal);
+});
+
+// Translate
+apiRouter.post('/translate', verifyAuth, async (req, res) => {
+  try {
+    const { texts, to } = req.body;
+
+    const response = await fetch(process.env.LECTO_URL, {
+      method: "POST",
+      headers: {
+        "X-API-Key": `${process.env.LECTO_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ texts, to })
+    });
+
+    const data = await response.json()
+    res.send(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ msg: 'Translation failed'});
+  }
 });
 
 // setAuthCookie in the HTTP response

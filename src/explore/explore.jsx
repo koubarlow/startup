@@ -34,7 +34,6 @@ export function Explore({ onAuthChange }) {
         throw new Error('Failed to fetch journals');
       }
       const journals = await res.json();
-      console.log(journals);
       setJournals(journals);
     } catch (e) {
       console.error(e);

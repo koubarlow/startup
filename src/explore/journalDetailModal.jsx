@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import userData from './users.json';
 
 export function JournalDetailModal({user, journal, setShowJournalDetail}) {
-
-    const journalTopic = journal.topic;
-    const journalEntryText = journal.entry;
-    const journalUsername = user.username;
-
     const englishText = `
         I live in an apartment. Every day, I go about my life surrounded by a quiet and calm atmosphere. There is very little noise in the mornings or at night, so it’s an environment where I can truly value my own time. Since it’s located a little away from the main road, I’m hardly ever bothered by the sounds of cars or people talking. When I open the window, I can sometimes hear birds chirping in the distance, and starting my day while listening to that sound makes me feel very peaceful.
         In the morning, soft light filters in through the gaps in the curtains, and I wake up naturally. Because there’s no rush of noisy commotion, I can slowly get ready and enjoy some quiet time while drinking a warm beverage. The outside air is clear, and when I step out onto the balcony and take a deep breath, it feels as though even my heart is refreshed. Even on busy days, having this quiet time in the morning allows me to start the day feeling calm and composed.
@@ -20,6 +15,13 @@ export function JournalDetailModal({user, journal, setShowJournalDetail}) {
         このアパートでの生活は、私にとってとても大切なものになっています。派手さや刺激はないかもしれませんが、その分、安定した安心感があります。静かな環境のおかげで、集中して勉強や趣味に取り組むこともでき、自分自身と向き合う時間をしっかり確保できています。毎日の何気ない瞬間が心地よく、ここで過ごす時間をこれからも大切にしていきたいと感じています。
         `;
 
+    const journalTopic = journal.topic;
+    const journalEntryText = journal.entry;
+    const journalUsername = user.username;
+
+    const [originalEntry, setOriginalEntry] = useState(journal.entry);
+    const [translatedEntry, setTranslatedEntry] = useState('');
+
     const [isTranslated, setIsTranslated] = useState(false);
 
     function toggle() {
@@ -27,21 +29,20 @@ export function JournalDetailModal({user, journal, setShowJournalDetail}) {
     }
 
     async function translate() {
-        const res = await fetch("https://libretranslate.com/translate", {
-            method: "POST",
+        
+        const res = await fetch('/api/translate', {
+            method: 'POST',
+            headers: { 'Content-Type': "application/json" },
             body: JSON.stringify({
-                q: journalEntryText,
-                source: "auto",
-                target: "en",
-                format: "text",
-                alternatives: 3,
-                api_key: ""
-            }),
-            headers: { "Content-Type": "application/json" }
+                texts: [journalEntryText],
+                to: ["en"],
+            })
         });
-
-        console.log(await res.json());
-        toggle();
+        const data = await res.json();
+        const translation = data.translations[0].translated[0];
+        console.log(data.translations[0].translated[0]);
+        setTranslatedEntry(translation);
+        setIsTranslated(true);
     }
 
     return(
@@ -61,7 +62,7 @@ export function JournalDetailModal({user, journal, setShowJournalDetail}) {
                 </div>
                 {/* <!-- Modal body --> */}
                 <div className="space-y-4 md:space-y-6 py-4 md:py-6">
-                  <p className="leading-relaxed text-body">{isTranslated ? englishText : journalEntryText}</p>
+                  <p className="leading-relaxed text-body">{isTranslated ? translatedEntry : originalEntry}</p>
                 </div>
                 {/* <!-- Modal footer --> */}
                 <div className="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">

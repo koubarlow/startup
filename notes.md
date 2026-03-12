@@ -40,6 +40,9 @@ npm run dev
 cd service
 node index.js
 ```
+
+### Lecto API
+https://lecto.ai/dashboard/docs
 -=-=-=-=--=-=-===-=-=-
 
 ## Caddy
