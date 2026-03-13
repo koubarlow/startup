@@ -74,6 +74,11 @@ const verifyAuth = async(req, res, next) => {
   }
 };
 
+// Get all users
+apiRouter.get('/users', verifyAuth, (req, res) => {
+  res.send(users);
+});
+
 // Get Specific User
 apiRouter.get('/users/:userId', verifyAuth, async (req, res) => {
   const userId = req.params.userId
@@ -83,7 +88,7 @@ apiRouter.get('/users/:userId', verifyAuth, async (req, res) => {
   } else {
     res.status(404).send({ msg: 'User not found' })
   }
-})
+});
 
 // Get Journals
 apiRouter.get('/journals', verifyAuth, async (req, res) => {
@@ -108,7 +113,6 @@ apiRouter.post('/journal', verifyAuth, async (req, res) => {
   const journals = createJournal(user.userId, req.body.topic, req.body.entry)
   res.send(journals);
 });
-
 
 // Update Journal as read
 apiRouter.put('/journal/:journalId', verifyAuth, async(req, res) => {
