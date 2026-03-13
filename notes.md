@@ -28,7 +28,13 @@ ssh -i Desktop/projects/cs260/production.pem ubuntu@yaytomodachi.click
 
 ### v2 After installing tailwind
 ```
-./deployFiles.sh -k ../production.pem -h yaytomodachi.click -s dist
+./deployService.sh -k ../production.pem -h yaytomodachi.click -s startup
+```
+
+### Update env var
+```
+ssh -i ../production.pem ubuntu@yaytomodachi.click
+pm2 restart startup --update-env -- --LECTO_URL=your_url --LECTO_API_KEY=your_key
 ```
 
 ### Run locally

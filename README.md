@@ -109,12 +109,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Nodejs and Express HTTP service has been set up.
+- [x] **Static middleware for frontend** - verifyAuth middleware protects other routes
+- [x] **Calls to third party endpoints** - Backend calls translation API (it takes a couple seconds to load after you hit the Translate button when you click on a journal on the Explore page).
+- [x] **Backend service endpoints** - Backend supports GET journals and users, GET specific journal and user.
+- [x] **Frontend calls service endpoints** - Journals page gets MyJournals. Explore page gets all journals.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Login and Sign up available, also logout. Other routes protected with authentication and restrictions.
 
 
 ## 🚀 DB deliverable
