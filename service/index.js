@@ -111,8 +111,8 @@ apiRouter.post('/journal', verifyAuth, async (req, res) => {
 
 
 // Update Journal as read
-apiRouter.put('/journal/:journalId', verifyAuth, async(_req, res) => {
-  const journal = await findJournal('journalId', journalId);
+apiRouter.put('/journal/:journalId', verifyAuth, async(req, res) => {
+  const journal = await findJournal('journalId', req.params.journalId);
   if (!journal) {
     return res.status(404).send({ msg: 'Journal not found' });
   }
