@@ -121,6 +121,7 @@ apiRouter.put('/journal/:journalId', verifyAuth, async(req, res) => {
     return res.status(404).send({ msg: 'Journal not found' });
   }
   journal.reads += 1;
+  await DB.updateJournal(journal);
   res.send(journal);
 });
 
@@ -187,10 +188,11 @@ async function createJournal(userId, topic, entry) {
     timestamp: new Date().toLocaleDateString(),
     reads: 0,
   };
-  DB.addJournal(journal);
+  await DB.addJournal(journal);
   const user = await findUser('userId', userId);
-  // TODO make update user with journal
   user.journals.push(journalId);
+  await DB.updateUser(user);
+  journals = DB.getJournals();
 
   return journals;
 }
@@ -209,7 +211,7 @@ async function findUser(field, value) {
 async function findJournal(field, value) {
   if (!value) return null;
 
-  return journals.find((u) => u[field] === value);
+  return DB.getJournal(value);
 }
 
 // Default error handler
