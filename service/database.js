@@ -19,6 +19,9 @@ const journalCollection = db.collection('journal');
 })();
 
 //getUsers
+function getUsers() {
+    return userCollection.find();
+}
 
 //getUserByEmail
 function getUser(email) {
@@ -46,15 +49,27 @@ async function updateUserRemoveAuth(user) {
 }
 
 //getJournals
+function getJournals() {
+    return journalCollection.find();
+}
 
 //addJournal
+async function addJournal(journal) {
+    await journalCollection.insertOne(journal);
+}
 
 //updateJournal
+async function updateJournal(journal) {
+    await journalCollection.updateOne({ journalId: journal.journalId }) // set reads
+}
 
 module.exports = {
   getUser,
   getUserByToken,
   addUser,
   updateUser,
-  updateUserRemoveAuth
+  updateUserRemoveAuth,
+  getJournals,
+  addJournal,
+  updateJournal
 };
