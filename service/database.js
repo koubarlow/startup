@@ -25,6 +25,9 @@ const journalCollection = db.collection('journal');
 //getUserByToken
 
 //addUser
+async function addUser(user) {
+  await userCollection.insertOne(user);
+}
 
 //updateUser
 

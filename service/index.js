@@ -173,7 +173,7 @@ async function createUser(email, username, password, country, language, age) {
     createdDate: new Date().toLocaleDateString(),
     lastLogin: new Date().toLocaleDateString()
   };
-  users.push(user);
+  await DB.addUser(user)
 
   return user;
 }
