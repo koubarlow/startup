@@ -46,6 +46,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user)
             setAuthCookie(res, user.token);
             res.send({ user: user });
             return;
@@ -199,7 +200,10 @@ async function createJournal(userId, topic, entry) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 // Find a journal by field such as id, etc.
