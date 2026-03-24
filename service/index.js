@@ -9,9 +9,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-let users = [];
-let journals = [];
-
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -78,6 +75,7 @@ const verifyAuth = async(req, res, next) => {
 
 // Get all users
 apiRouter.get('/users', verifyAuth, (req, res) => {
+  users = DB.getUsers();
   res.send(users);
 });
 
@@ -189,8 +187,9 @@ async function createJournal(userId, topic, entry) {
     timestamp: new Date().toLocaleDateString(),
     reads: 0,
   };
-  journals.push(journal);
-  const user = await findUser('userId', userId)
+  DB.addJournal(journal);
+  const user = await findUser('userId', userId);
+  // TODO make update user with journal
   user.journals.push(journalId);
 
   return journals;

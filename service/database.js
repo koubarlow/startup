@@ -50,6 +50,8 @@ async function updateUserRemoveAuth(user) {
 
 //getJournals
 function getJournals() {
+    // limit to top 20 or so?
+    // filter by most recent?
     return journalCollection.find();
 }
 
