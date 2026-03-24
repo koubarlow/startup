@@ -55,5 +55,6 @@ module.exports = {
   getUser,
   getUserByToken,
   addUser,
-  updateUser
+  updateUser,
+  updateUserRemoveAuth
 };
