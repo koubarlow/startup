@@ -41,6 +41,9 @@ async function updateUser(user) {
 }
 
 //updateUserRemoveAuth
+async function updateUserRemoveAuth(user) {
+  await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
+}
 
 //getJournals
 
