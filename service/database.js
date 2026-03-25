@@ -50,12 +50,12 @@ async function addUser(user) {
 
 //updateUser
 async function updateUser(user) {
-  await userCollection.updateOne({ email: user.email }, { $set: user });
+  await userCollection.updateOne({ userId: user.userId }, { $set: user });
 }
 
 //updateUserRemoveAuth
 async function updateUserRemoveAuth(user) {
-  await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
+  await userCollection.updateOne({ userId: user.userId }, { $unset: { token: 1 } });
 }
 
 //getJournals
@@ -72,7 +72,7 @@ function getJournalByJournalId(journalId) {
 
 //getJournalsByUserID
 function getJournalsByUserId(userId) {
-  return journalCollection.find({ userId: userId})
+  return journalCollection.find({ userId: userId });
 }
 
 //addJournal
@@ -82,16 +82,21 @@ async function addJournal(journal) {
 
 //updateJournal
 async function updateJournal(journal) {
-    await journalCollection.updateOne({ journalId: journal.journalId }) // set reads
+    let reads = journal.reads++;
+    await journalCollection.updateOne({ journalId: journal.journalId }, { $set: reads }) // set reads
 }
 
 module.exports = {
-  getUser,
+  getUsers,
+  getUserByEmail,
   getUserByToken,
+  getUserByUserId,
   addUser,
   updateUser,
   updateUserRemoveAuth,
   getJournals,
+  getJournalByJournalId,
+  getJournalsByUserId,
   addJournal,
   updateJournal
 };

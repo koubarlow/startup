@@ -94,16 +94,11 @@ apiRouter.get('/users/:userId', verifyAuth, async (req, res) => {
 apiRouter.get('/journals', verifyAuth, async (req, res) => {
   const { userId } = req.query;
   if (!userId) {
+    journals = await DB.getJournals();
     res.send(journals);
     return;
   }
-  const user = await findUser('userId', userId);
-  const journalIds = user.journals;
-  const userJournals = []
-  for (const journalId of journalIds) {
-    const journal = await findJournal('journalId', journalId);
-    userJournals.push(journal);
-  }
+  const userJournals = await DB.getJournalsByUserId(userId);
   res.send(userJournals);
 });
 
@@ -120,7 +115,6 @@ apiRouter.put('/journal/:journalId', verifyAuth, async(req, res) => {
   if (!journal) {
     return res.status(404).send({ msg: 'Journal not found' });
   }
-  journal.reads += 1;
   await DB.updateJournal(journal);
   res.send(journal);
 });
@@ -203,15 +197,17 @@ async function findUser(field, value) {
 
   if (field === 'token') {
     return DB.getUserByToken(value);
+  } else if (field === 'userId') {
+    return DB.getUserByUserId(value);
   }
-  return DB.getUser(value);
+  return DB.getUserByEmail(value);
 }
 
 // Find a journal by field such as id, etc.
 async function findJournal(field, value) {
   if (!value) return null;
 
-  return DB.getJournal(value);
+  return DB.getJournalByJournalId(value);
 }
 
 // Default error handler
