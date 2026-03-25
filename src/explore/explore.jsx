@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { JournalDetailModal } from './journalDetailModal';
 import { ExploreJournalEntry } from './exploreJournalEntry';
-import journalData from './journals.json';
 import { AuthState } from '../login/authState';
 import { useNavigate } from 'react-router-dom';
 

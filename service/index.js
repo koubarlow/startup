@@ -1,11 +1,10 @@
-require('dotenv').config({ path: __dirname + '/.env' });
-
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const lectoConfig = require('./lectoConfig.json');
 
 const authCookieName = 'token';
 
@@ -74,8 +73,8 @@ const verifyAuth = async(req, res, next) => {
 };
 
 // Get all users
-apiRouter.get('/users', verifyAuth, (req, res) => {
-  users = DB.getUsers();
+apiRouter.get('/users', verifyAuth, async (req, res) => {
+  users = await DB.getUsers();
   res.send(users);
 });
 
@@ -124,10 +123,10 @@ apiRouter.post('/translate', verifyAuth, async (req, res) => {
   try {
     const { texts, to } = req.body;
 
-    const response = await fetch(process.env.LECTO_URL, {
+    const response = await fetch(lectoConfig.lectoUrl, {
       method: "POST",
       headers: {
-        "X-API-Key": `${process.env.LECTO_API_KEY}`,
+        "X-API-Key": `${lectoConfig.lectoApiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ texts, to })

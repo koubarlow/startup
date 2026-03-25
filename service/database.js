@@ -1,8 +1,8 @@
 
 const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
+const dbConfig = require('./dbConfig.json');
 
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const url = `mongodb+srv://${dbConfig.userName}:${dbConfig.password}@${dbConfig.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
@@ -26,7 +26,8 @@ const journalCollection = db.collection('journal');
 
 //getUsers
 function getUsers() {
-    return userCollection.find();
+    const userCursor = userCollection.find().limit(100);
+    return userCursor.toArray();
 }
 
 //getUserByEmail
@@ -62,7 +63,8 @@ async function updateUserRemoveAuth(user) {
 function getJournals() {
     // limit to top 20 or so?
     // filter by most recent?
-    return journalCollection.find();
+    const journalCursor = journalCollection.find().limit(100);
+    return journalCursor.toArray();
 }
 
 //getJournalByID
@@ -72,7 +74,8 @@ function getJournalByJournalId(journalId) {
 
 //getJournalsByUserID
 function getJournalsByUserId(userId) {
-  return journalCollection.find({ userId: userId });
+  const journalCursor = journalCollection.find({ userId: userId }).limit(100);
+  return journalCursor.toArray();
 }
 
 //addJournal
@@ -82,8 +85,10 @@ async function addJournal(journal) {
 
 //updateJournal
 async function updateJournal(journal) {
-    let reads = journal.reads++;
-    await journalCollection.updateOne({ journalId: journal.journalId }, { $set: reads }) // set reads
+    const reads = journal.reads;
+    const newReads = reads + 1;
+    const journalId = journal.journalId;
+    await journalCollection.updateOne({ journalId: journalId }, { $set: {reads: newReads} }); // set reads
 }
 
 module.exports = {

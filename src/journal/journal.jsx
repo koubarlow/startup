@@ -55,6 +55,7 @@ export function Journal({ userId, onAuthChange }) {
 
     for (const [i, notification] of notifications.entries()) {
       if (myJournals.length <= 0) { return }
+      if (allUsers.length <= 0) { return }
       let randomUserIndex = Math.floor(Math.random() * allUsers.length);
       let user = allUsers[randomUserIndex];
       let username = user.username;
