@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import userData from './users.json';
 
 export function JournalDetailModal({user, journal, setShowJournalDetail}) {
     const englishText = `

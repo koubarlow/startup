@@ -24,12 +24,21 @@ export function SignUp({ onAuthChange }) {
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   };
+
+  const passwordMatchesConfirmPassword = () => {
+    return password == confirmPassword;
+  }
   
   async function signUpUser() {
     if (!validateEmail(email)) {
       setDisplayError("Invalid email format");
       return;
     }
+    if (!passwordMatchesConfirmPassword()) {
+      setDisplayError("Confirmed password must match password!");
+      return;
+    }
+
     let newUser = { email: email, username: username, password: password, country: country, language: language, age: age }
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
