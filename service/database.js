@@ -44,6 +44,13 @@ function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
+//getUserByLookup
+async function getUserCountByLanguage(language) {
+  const userCursor = userCollection.find({ language: language });
+  const userArray = await userCursor.toArray();
+  return userArray.length;
+}
+
 //addUser
 async function addUser(user) {
   await userCollection.insertOne(user);
@@ -96,6 +103,7 @@ module.exports = {
   getUserByEmail,
   getUserByToken,
   getUserByUserId,
+  getUserCountByLanguage,
   addUser,
   updateUser,
   updateUserRemoveAuth,

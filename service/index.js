@@ -72,6 +72,18 @@ const verifyAuth = async(req, res, next) => {
   }
 };
 
+// Get count of users with languages
+apiRouter.get('/userCount', async (req, res) => {
+  const enUserCount = await DB.getUserCountByLanguage("en");
+  const englishUserCount = await DB.getUserCountByLanguage("english");
+  const jpUserCount = await DB.getUserCountByLanguage("jp");
+  const japaneseUserCount = await DB.getUserCountByLanguage("japanese");
+
+  const english = enUserCount + englishUserCount;
+  const japanese = jpUserCount + japaneseUserCount;
+  res.send({ englishCount: english, japaneseCount: japanese});
+});
+
 // Get all users
 apiRouter.get('/users', verifyAuth, async (req, res) => {
   users = await DB.getUsers();

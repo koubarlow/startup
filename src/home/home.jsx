@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthState } from '../login/authState';
 
 export function Home({ username, authState }) {
   const navigate = useNavigate();
+  const [englishCount, setEnglishCount] = React.useState(0);
+  const [japaneseCount, setJapaneseCount] = React.useState(0);
+
+  async function fetchUserCounts() {
+    try {
+      const res = await fetch(`/api/userCount`);
+      if (!res.ok) {
+        throw new Error('Failed to fetch userCount');
+      }
+      const userCount = await res.json();
+      setEnglishCount(userCount.englishCount);
+      setJapaneseCount(userCount.japaneseCount);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  React.useEffect(() => {
+    fetchUserCounts();
+  }, []);
 
   return (
     <main>
@@ -35,12 +55,12 @@ export function Home({ username, authState }) {
       <div className="numberOfUsersDisplay">
         <div>
           <img src="assets/US.svg" alt="US Flag"/>
-          <h2 className="mt-4">100,106</h2>
+          <h2 className="mt-4">{englishCount}</h2>
           <p>Native English Users</p>
         </div>
         <div>
           <img src="assets/JP.svg" alt="Japan Flag"/>
-          <h2 className="mt-4">95,004</h2>
+          <h2 className="mt-4">{japaneseCount}</h2>
           <p>Native Japanese Users</p>
         </div>
       </div>
