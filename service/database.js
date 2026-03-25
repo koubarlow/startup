@@ -18,14 +18,24 @@ const journalCollection = db.collection('journal');
   }
 })();
 
+// GET journal by journal ID
+// GET all journals
+// GET user by userId
+// GET all users
+// GET journals by UserID
+
 //getUsers
 function getUsers() {
     return userCollection.find();
 }
 
 //getUserByEmail
-function getUser(email) {
+function getUserByEmail(email) {
   return userCollection.findOne({ email: email });
+}
+
+function getUserByUserId(userId) {
+  return userCollection.findOne({ userId: userId });
 }
 
 //getUserByLookup
@@ -53,6 +63,16 @@ function getJournals() {
     // limit to top 20 or so?
     // filter by most recent?
     return journalCollection.find();
+}
+
+//getJournalByID
+function getJournalByJournalId(journalId) {
+  return journalCollection.findOne({ journalId: journalId });
+}
+
+//getJournalsByUserID
+function getJournalsByUserId(userId) {
+  return journalCollection.find({ userId: userId})
 }
 
 //addJournal
