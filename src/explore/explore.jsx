@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { JournalDetailModal } from './journalDetailModal';
 import { ExploreJournalEntry } from './exploreJournalEntry';
+import { JournalEvent, JournalNotifier } from '../journal/journalReadNotifier';
 import { AuthState } from '../login/authState';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +18,12 @@ export function Explore({ onAuthChange }) {
     setSelectedJournalUser(user);
     setShowJournalDetail(prev => !prev);
     markJournalAsRead(journalEntry);
+    
+    const currentUserId = localStorage.getItem('currentUserId');
+    const toUserId = selectedJournalUser.userId;
+    const currentDate = new Date().toLocaleDateString();
+    const readJournalId = journalEntry.journalId;
+    JournalNotifier.broadcastEvent(currentUserId, toUserId, currentDate, readJournalId);
   }
 
   async function markJournalAsRead(journalEntry) {

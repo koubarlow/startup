@@ -1,6 +1,7 @@
 class JournalEvent {
-  constructor(userId, timestamp, journalId) {
-    this.userId = userId;
+  constructor(fromUserId, toUserId, timestamp, journalId) {
+    this.fromUserId = fromUserId;
+    this.toUserId = toUserId;
     this.timestamp = timestamp;
     this.journalId = journalId;
   }
@@ -11,17 +12,25 @@ class JournalReadNotifier {
     handlers = []
 
     constructor() {
-    // Simulate notifications that will eventually come over WebSocket
-    setInterval(() => {
-      const userId = 1;
-      const timestamp = new Date().toLocaleDateString();
-      const journalId = 1;
-      this.broadcastEvent(userId, timestamp, journalId);
-    }, 5000);
+      let port = window.location.port;
+      const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+      this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+      // this.socket.onopen = (event) => {
+      //   this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'connected' }));
+      // };
+      // this.socket.onclose = (event) => {
+      //   this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'disconnected' }));
+      // };
+      this.socket.onmessage = async (msg) => {
+        try {
+          const event = JSON.parse(await msg.data.text());
+          this.receiveEvent(event);
+        } catch {}
+      };
   }
 
-  broadcastEvent(userId, timestamp, journalId) {
-    const event = new JournalEvent(userId, timestamp, journalId);
+  broadcastEvent(fromUserId, toUserId, timestamp, journalId) {
+    const event = new JournalEvent(fromUserId, toUserId, timestamp, journalId);
     this.receiveEvent(event);
   }
 
@@ -34,6 +43,9 @@ class JournalReadNotifier {
   }
 
   receiveEvent(event) {
+    const fromUserId = event.fromUserId;
+    const toUserId = event.toUserId;
+    console.log("From: " + fromUserId + ". To: " + toUserId);
     this.events.push(event);
 
     this.handlers.forEach((handler) => {
@@ -43,4 +55,4 @@ class JournalReadNotifier {
 }
 
 const JournalNotifier = new JournalReadNotifier();
-export { JournalNotifier };
+export { JournalEvent, JournalNotifier };
