@@ -46,6 +46,7 @@ class JournalReadNotifier {
     const fromUserId = event.fromUserId;
     const toUserId = event.toUserId;
     console.log("From: " + fromUserId + ". To: " + toUserId);
+    console.log("This user ID: " + localStorage.getItem('currentUserId'));
     this.events.push(event);
 
     this.handlers.forEach((handler) => {

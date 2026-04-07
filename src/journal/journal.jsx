@@ -11,11 +11,9 @@ export function Journal({ userId, onAuthChange }) {
   const [showCreateJournalEntryModal, setShowCreateJournalEntryModal] = React.useState(false);
   const [notifications, setMyNotifications] = React.useState([]);
   const [myJournals, setMyJournals] = React.useState([]);
-  const [allUsers, setAllUsers] = React.useState([]);
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    getUsers();
     fetchUserJournals();
 
     return () => {
@@ -33,8 +31,8 @@ export function Journal({ userId, onAuthChange }) {
     });
   }
 
-  async function getUsers() {
-    const res = await fetch('/api/users');
+  async function getUserById(userId) {
+    const res = await fetch(`/api/users/${userId}`);
     if (res.status == 401) {
         localStorage.removeItem('username');
         localStorage.removeItem('currentUserId');
@@ -43,36 +41,43 @@ export function Journal({ userId, onAuthChange }) {
         return;
     }
     if (!res.ok) {
-      throw new Error('Failed to fetch users');
+      throw new Error('Failed to fetch user');
     }
-    const users = await res.json();
-    setAllUsers(users);
-    JournalNotifier.addHandler(handleJournalEvent);
+    const user = await res.json();
+    return user;
   }
 
-  function createNotifications() {
+  async function getJournalById(journalId) {
+    const res = await fetch(`/api/journal/${journalId}`);
+    if (res.status == 401) {
+        localStorage.removeItem('username');
+        localStorage.removeItem('currentUserId');
+        onAuthChange('', '', AuthState.Unauthenticated)
+        navigate('/');
+        return;
+    }
+    if (!res.ok) {
+      throw new Error('Failed to fetch user');
+    }
+    const journal = await res.json();
+    return journal;
+  }
+
+  async function createNotifications() {
     const notificationArray = [];
 
     for (const [i, notification] of notifications.entries()) {
-      if (myJournals.length <= 0) { return }
-      if (allUsers.length <= 0) { return }
-      
-      let randomUserIndex = Math.floor(Math.random() * allUsers.length);
-      let user = allUsers[randomUserIndex];
-      let username = user.username;
-      let timestamp = Date.now();
-      let randomJournalIndex = Math.floor(Math.random() * myJournals.length);
-      let journal = myJournals.at(randomJournalIndex);
-      let journalTitle = journal.topic;
-      let journalDate = journal.timestamp;
+
+      const fromUser = await getUserById(notification.fromUserId);
+      const journal = await getJournalById(notification.journalId);
 
       notificationArray.push(
         <MyNotification 
         key={i}
-        username={username}
-        journalTitle={journalTitle}
-        journalDate={journalDate}
-        timestamp={timestamp}
+        username={fromUser.username}
+        journalTitle={journal.topic}
+        journalDate={journal.timestamp}
+        timestamp={notification.timestamp}
         />
       );
     }
