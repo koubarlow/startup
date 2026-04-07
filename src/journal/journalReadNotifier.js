@@ -15,12 +15,6 @@ class JournalReadNotifier {
       let port = window.location.port;
       const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
       this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-      // this.socket.onopen = (event) => {
-      //   this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'connected' }));
-      // };
-      // this.socket.onclose = (event) => {
-      //   this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'disconnected' }));
-      // };
       this.socket.onmessage = async (msg) => {
         try {
           const event = JSON.parse(await msg.data.text());
@@ -31,7 +25,7 @@ class JournalReadNotifier {
 
   broadcastEvent(fromUserId, toUserId, timestamp, journalId) {
     const event = new JournalEvent(fromUserId, toUserId, timestamp, journalId);
-    this.receiveEvent(event);
+    this.socket.send(JSON.stringify(event));
   }
 
   addHandler(handler) {
@@ -49,8 +43,10 @@ class JournalReadNotifier {
     console.log("This user ID: " + localStorage.getItem('currentUserId'));
     this.events.push(event);
 
-    this.handlers.forEach((handler) => {
-      handler(event);
+    this.events.forEach((e) => {
+      this.handlers.forEach((handler) => {
+        handler(e);
+      });
     });
   }
 }

@@ -18,9 +18,9 @@ export function Explore({ onAuthChange }) {
     setSelectedJournalUser(user);
     setShowJournalDetail(prev => !prev);
     markJournalAsRead(journalEntry);
-    
+
     const currentUserId = localStorage.getItem('currentUserId');
-    const toUserId = selectedJournalUser.userId;
+    const toUserId = user.userId;
     const currentDate = new Date().toLocaleDateString();
     const readJournalId = journalEntry.journalId;
     JournalNotifier.broadcastEvent(currentUserId, toUserId, currentDate, readJournalId);

@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { JournalNotifier } from './journalReadNotifier';
 import { MyJournalEntry } from './myJournalEntry';
 import { MyNotification } from './myNotification';
 import { CreateJournalEntryModal } from './createJournalEntryModal';
 import { useNavigate } from 'react-router-dom';
 import { AuthState } from '../login/authState';
+import { JournalEvent, JournalNotifier } from './journalReadNotifier';
 
 export function Journal({ userId, onAuthChange }) {
   const userData = [];
   const [showCreateJournalEntryModal, setShowCreateJournalEntryModal] = React.useState(false);
-  const [notifications, setMyNotifications] = React.useState([]);
+  const [notifications, setNotifications] = React.useState([]);
   const [myJournals, setMyJournals] = React.useState([]);
   const navigate = useNavigate();
 
   React.useEffect(() => {
     fetchUserJournals();
+    JournalNotifier.addHandler(handleJournalEvent);
 
     return () => {
       JournalNotifier.removeHandler(handleJournalEvent);
@@ -22,13 +23,14 @@ export function Journal({ userId, onAuthChange }) {
   }, []);
 
   function handleJournalEvent(notification) {
-    setMyNotifications((prevEvents) => {
-      let newEvents = [notification, ...prevEvents];
-      if (newEvents.length > 3) {
-        newEvents = newEvents.slice(1, 3);
-      }
-      return newEvents;
-    });
+    setNotifications([...notifications, notification]);
+    // setMyNotifications((prevEvents) => {
+    //   let newEvents = [notification, ...prevEvents];
+    //   if (newEvents.length > 3) {
+    //     newEvents = newEvents.slice(1, 3);
+    //   }
+    //   return newEvents;
+    // });
   }
 
   async function getUserById(userId) {
@@ -63,13 +65,13 @@ export function Journal({ userId, onAuthChange }) {
     return journal;
   }
 
-  async function createNotifications() {
+  function createNotifications() {
     const notificationArray = [];
 
     for (const [i, notification] of notifications.entries()) {
 
-      const fromUser = await getUserById(notification.fromUserId);
-      const journal = await getJournalById(notification.journalId);
+      const fromUser = getUserById(notification.fromUserId);
+      const journal = getJournalById(notification.journalId);
 
       notificationArray.push(
         <MyNotification 
