@@ -128,8 +128,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [X] **Backend listens for WebSocket connection** - Backend listens for on message.
+- [X] **Frontend makes WebSocket connection** - Frontend makes websocket connection.
+- [X] **Data sent over WebSocket connection** - JournalReadNotifications are sent over websocket when a user taps on a journal to read on the explore page.
+- [X] **WebSocket data displayed** - JournalReadNotifications are displayed if the notification pertains to a journal owned by the user. Notifications will show on the Journals page (user journals only) page.
+- [X] **Application is fully functional** - Application is now fully functional!
