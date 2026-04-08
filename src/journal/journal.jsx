@@ -33,52 +33,15 @@ export function Journal({ userId, onAuthChange }) {
     // });
   }
 
-  async function getUserById(userId) {
-    const res = await fetch(`/api/users/${userId}`);
-    if (res.status == 401) {
-        localStorage.removeItem('username');
-        localStorage.removeItem('currentUserId');
-        onAuthChange('', '', AuthState.Unauthenticated)
-        navigate('/');
-        return;
-    }
-    if (!res.ok) {
-      throw new Error('Failed to fetch user');
-    }
-    const user = await res.json();
-    return user;
-  }
-
-  async function getJournalById(journalId) {
-    const res = await fetch(`/api/journal/${journalId}`);
-    if (res.status == 401) {
-        localStorage.removeItem('username');
-        localStorage.removeItem('currentUserId');
-        onAuthChange('', '', AuthState.Unauthenticated)
-        navigate('/');
-        return;
-    }
-    if (!res.ok) {
-      throw new Error('Failed to fetch user');
-    }
-    const journal = await res.json();
-    return journal;
-  }
-
   function createNotifications() {
     const notificationArray = [];
-
     for (const [i, notification] of notifications.entries()) {
-
-      const fromUser = getUserById(notification.fromUserId);
-      const journal = getJournalById(notification.journalId);
-
       notificationArray.push(
         <MyNotification 
         key={i}
-        username={fromUser.username}
-        journalTitle={journal.topic}
-        journalDate={journal.timestamp}
+        username={notification.fromUsername}
+        journalTitle={notification.readJournalTopic}
+        journalDate={notification.readJournalDate}
         timestamp={notification.timestamp}
         />
       );

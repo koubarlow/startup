@@ -19,11 +19,12 @@ export function Explore({ onAuthChange }) {
     setShowJournalDetail(prev => !prev);
     markJournalAsRead(journalEntry);
 
-    const currentUserId = localStorage.getItem('currentUserId');
+    const fromUsername = localStorage.getItem('username') || "User";
     const toUserId = user.userId;
-    const currentDate = new Date().toLocaleDateString();
-    const readJournalId = journalEntry.journalId;
-    JournalNotifier.broadcastEvent(currentUserId, toUserId, currentDate, readJournalId);
+    const currentDate = new Date();
+    const readJournalDate = journalEntry.timestamp;
+    const readJournalTopic = journalEntry.topic;
+    JournalNotifier.broadcastEvent(fromUsername, toUserId, currentDate, readJournalDate, readJournalTopic);
   }
 
   async function markJournalAsRead(journalEntry) {

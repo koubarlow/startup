@@ -1,9 +1,10 @@
 class JournalEvent {
-  constructor(fromUserId, toUserId, timestamp, journalId) {
-    this.fromUserId = fromUserId;
+  constructor(fromUsername, toUserId, timestamp, readJournalDate, readJournalTopic) {
+    this.fromUsername = fromUsername;
     this.toUserId = toUserId;
     this.timestamp = timestamp;
-    this.journalId = journalId;
+    this.readJournalDate = readJournalDate
+    this.readJournalTopic = readJournalTopic;
   }
 }
 
@@ -23,8 +24,8 @@ class JournalReadNotifier {
       };
   }
 
-  broadcastEvent(fromUserId, toUserId, timestamp, journalId) {
-    const event = new JournalEvent(fromUserId, toUserId, timestamp, journalId);
+  broadcastEvent(fromUsername, toUserId, timestamp, readJournalDate, readJournalTopic) {
+    const event = new JournalEvent(fromUsername, toUserId, timestamp, readJournalDate, readJournalTopic);
     this.socket.send(JSON.stringify(event));
   }
 
@@ -37,10 +38,7 @@ class JournalReadNotifier {
   }
 
   receiveEvent(event) {
-    const fromUserId = event.fromUserId;
-    const toUserId = event.toUserId;
-    console.log("From: " + fromUserId + ". To: " + toUserId);
-    console.log("This user ID: " + localStorage.getItem('currentUserId'));
+    if (event.toUserId != localStorage.getItem('currentUserId')) { return }
     this.events.push(event);
 
     this.events.forEach((e) => {

@@ -10,11 +10,11 @@ export function MyNotification({username, journalTitle, journalDate, timestamp})
         <div className="ms-2 text-sm">
         {timestampHourMinutes}: {username} read your {journalTitle} journal entry written on {journalDate}
         </div>
-        <button type="button" className="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-brand-medium hover:bg-brand-200 inline-flex items-center justify-center h-8 w-8 shrink-0 shrink-0" data-dismiss-target="#alert-1" aria-label="Close">
+        {/* <button type="button" className="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-brand-medium hover:bg-brand-200 inline-flex items-center justify-center h-8 w-8 shrink-0 shrink-0" data-dismiss-target="#alert-1" aria-label="Close">
             <span className="sr-only">Close</span>
-            {/* onClick={dismissNotification(notification.notificationId)} */}
+            onClick={dismissNotification(notification.notificationId)}
             <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
-        </button>
+        </button> */}
     </div>
     );
 }
